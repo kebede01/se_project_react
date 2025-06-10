@@ -1,0 +1,23 @@
+.cards{
+
+}
+.cards__text{
+font-family: Cabinet Grotesk;
+font-weight: 700;
+font-size: 20px;
+line-height: 100%;
+letter-spacing: 0%;
+color: #000000;
+margin: 40px 0px 34px;
+}
+.cardItems{
+display: flex;
+justify-content: center;
+gap: 20px;
+}
+.cardItems__list{
+
+}
+.cardItems__list-img{
+
+}
