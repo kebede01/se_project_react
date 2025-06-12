@@ -36,7 +36,7 @@ function App() {
         .then(data => {
           // Use the data here
           const filteredData = filterWeatherData(data);
-         
+        
          setWeatherData(filteredData)
           console.log(data);
         })

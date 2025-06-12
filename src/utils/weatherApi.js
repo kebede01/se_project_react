@@ -20,8 +20,9 @@ export const filterWeatherData = (data) => {
   const result = {};
   result.city = data.name;
   result.temp = data.main.temp;
-  result.type = data.weather.main;
+  result.condition = data.weather[0].main.toLowerCase();
   result.type = getWeatherType(result.temp)
+  result.isDay = isDay(data.sys, Date.now());
   return result;
 }
 
@@ -34,4 +35,7 @@ if (temperature >= 86) {
   return 'cold';
 }
 }
-// 'https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={APIkey}'
+
+const isDay = ({ sunrise, sunset }, now) => {
+return (sunrise * 1000 < now && now < sunset * 1000); 
+ }
