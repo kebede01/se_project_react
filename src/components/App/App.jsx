@@ -1,14 +1,16 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import {
   defaultClothingItems,
   APIkey,
-  location,
+  coordinates,
 } from "../../utils/constants.js";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import ItemModal from "../ItemModal/ItemModal";
+import WeatherApi from '../../utils/WeatherApi.js'
+import { filterWeatherData } from '../../utils/WeatherApi.js'
 function App() {
   const [weatherData, setWeatherData] = useState({
     type: "cold",
@@ -27,23 +29,26 @@ function App() {
     setActiveModal("preview")
     setSelectedCard(card)
   }
-  // const url = `https://api.openweathermap.org/data/3.0/onecall/overview?lat={location.lat}&lon={location.lon}&appid={APIkey}`;
 
-  // fetch(url)
-  //   .then(response => response.json())
-  //   .then(data => {
-  //     // Use the data here
-  //     console.log(data);
-  //   })
-  //   .catch(error => {
-  //     console.error('Error:', error);
-  //   });
-
+  useEffect(
+    () => {
+      WeatherApi({ coordinates }, APIkey)
+        .then(data => {
+          // Use the data here
+          const filteredData = filterWeatherData(data);
+         
+         setWeatherData(filteredData)
+          console.log(data);
+        })
+        .catch(error => {
+          console.error('Error:', error);
+        });
+    }, []);
   return (
     <>
       <div className="page">
         <div className="page__content">
-          <Header onClickAdd={handleButtonClick} />
+          <Header onClickAdd={handleButtonClick} weatherData={weatherData } />
           <Main weatherData={weatherData} handleCardClick={handleCardClick}/>
           <ModalWithForm
             buttonText="Add garment"

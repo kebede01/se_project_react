@@ -5,10 +5,10 @@ import rain from "../../assets/rain.svg";
 import snow from "../../assets/snow.svg";
 import storm from "../../assets/storm.svg";
 import fog from "../../assets/fog.svg";
-function WeatherCard() {
+function WeatherCard({weatherCard}) {
   return (
     <section className="weather-card">
-      <p className="weather-card__temp">75 degree</p>
+      <p className="weather-card__temp">{weatherCard.temp} degree</p>
       <img src={sunny} alt="weather image" className="weather-card__img" />
     </section>
   );
