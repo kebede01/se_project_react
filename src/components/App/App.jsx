@@ -1,18 +1,113 @@
-import './App.css'
-import Header from '../Header/Header'
-import Main from '../Main/Main'
-
+import { useState } from "react";
+import "./App.css";
+import Header from "../Header/Header";
+import Main from "../Main/Main";
+import {
+  defaultClothingItems,
+  APIkey,
+  location,
+} from "../../utils/constants.js";
+import ModalWithForm from "../ModalWithForm/ModalWithForm";
+import ItemModal from "../ItemModal/ItemModal";
 function App() {
+  const [weatherData, setWeatherData] = useState({
+    type: "cold",
+    temp: 96,
+  });
+  const [activeModal, setActiveModal] = useState("");
+  const [selectedCard, setSelectedCard] = useState({});
+  const handleButtonClick = () => {
+    setActiveModal("add-garment");
+  };
+  const closeActiveModal = () => {
+    setActiveModal("");
+  };
+  const handleCardClick = (card) => {
+   
+    setActiveModal("preview")
+    setSelectedCard(card)
+  }
+  // const url = `https://api.openweathermap.org/data/3.0/onecall/overview?lat={location.lat}&lon={location.lon}&appid={APIkey}`;
+
+  // fetch(url)
+  //   .then(response => response.json())
+  //   .then(data => {
+  //     // Use the data here
+  //     console.log(data);
+  //   })
+  //   .catch(error => {
+  //     console.error('Error:', error);
+  //   });
+
   return (
-       <>
-      <div className='page'>
-        <div className='page__content'>
-          <Header />
-          <Main />
-          
+    <>
+      <div className="page">
+        <div className="page__content">
+          <Header onClickAdd={handleButtonClick} />
+          <Main weatherData={weatherData} handleCardClick={handleCardClick}/>
+          <ModalWithForm
+            buttonText="Add garment"
+            title="New garment"
+            activeModal={activeModal}
+            closeModal={closeActiveModal}
+          >
+            <label htmlFor="name" className="modal__label">
+              Name
+              <input
+                id="name"
+                type="text"
+                className="modal__input"
+                placeholder="Name"
+                required
+              />
+              <span id="name-error" className="modal__error"></span>
+            </label>
+
+            <label htmlFor="imageUrl" className="modal__label">
+              Image
+              <input
+                id="imageUrl"
+                type="text"
+                className="modal__input"
+                placeholder=" Image URL"
+                required
+              />
+              <span id="description-error" className="modal__error"></span>
+            </label>
+            <fieldset className="modal__radio-buttons">
+              <legend className="modal__legend">
+                {" "}
+                Select the weather type
+              </legend>
+              <label
+                htmlFor="hot"
+                className="modal__label modal__label_type-radio"
+              >
+                <input type="radio" id="hot" className="modal__radio-input" />{" "}
+                Hot
+              </label>
+
+              <label
+                htmlFor="cold"
+                className="modal__label modal__label_type-radio"
+              >
+                <input type="radio" id="cold" className="modal__radio-input" />{" "}
+                Cold
+              </label>
+
+              <label
+                htmlFor="warm"
+                className="modal__label modal__label_type-radio"
+              >
+                <input type="radio" id="warm" className="modal__radio-input" />{" "}
+                Warm
+              </label>
+            </fieldset>
+          </ModalWithForm>
+          <ItemModal activeModal={ activeModal} selectedCardItem={selectedCard} onClosePreview={closeActiveModal}/>
         </div>
       </div>
     </>
-  )
- }
+  );
+}
 export default App;

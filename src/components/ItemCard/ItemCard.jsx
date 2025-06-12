@@ -1,25 +1,17 @@
-import './ItemCard.css'
-import cap from '../../assets/cap.svg'
-import shorts from '../../assets/shorts.svg'
-import sneakers from '../../assets/sneakers.svg'
-import shirt from '../../assets/shirt.svg'
-function ItemCard() {
+import "./ItemCard.css";
+import cap from "../../assets/cap.svg";
+import shorts from "../../assets/shorts.svg";
+import sneakers from "../../assets/sneakers.svg";
+import shirt from "../../assets/shirt.svg";
+function ItemCard({ item, onCardClick }) {
+  const handleCallBack = () => {
+ onCardClick(item) 
+  }
   return (
-    
-        <section className="cards">
-        <p className="cards__text">Today is 75° F / You may want to wear:</p>
-         <ul className="cardItems">
-        <li className="cardItems__list"><img src={cap } alt="" className="cardItems__list-img" /></li>
-        <li className="cardItems__list"><img src={ shorts} alt="" className="cardItems__list-img" /></li>
-        <li className="cardItems__list"><img src={sneakers } alt="" className="cardItems__list-img" /></li>
-         <li className="cardItems__list"><img src={ shirt} alt="" className="cardItems__list-img"/></li>
-      </ul>
-      </section>
-      
-
-      
-     
-    
-  )
+    <li className="card" id={item._id}>
+      <h2 className="card__name">{item.name}</h2>
+      <img src={item.link} alt={item.name} className="card__img" onClick={handleCallBack} />
+    </li>
+  );
 }
-export default ItemCard
+export default ItemCard;

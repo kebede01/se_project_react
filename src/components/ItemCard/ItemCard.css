@@ -1,7 +1,53 @@
 .cards{
+  display: flex;
+  flex-direction: column;
+}
+.card{
+ position: relative; 
+ width: 323px;
+display: flex;
+justify-content: center;
+border-radius: 19px;
+border-color: 1px #0000004D;
+background: transparent;
+overflow: hidden;
+object-fit: cover;
+object-position: right;
+}
+.card__name{
+margin: 0;
+font-family: Cabinet Grotesk;
+font-weight: 700;
+font-size: 16px;
+line-height: 20px;
+letter-spacing: 0%;
+padding: 2px 12px;
+background: #FFFFFF;
 
+display: inline;
+color: #00000099;
+position: absolute;
+top: 15px;
+align-items: center;
+}
+
+.card__img{
+width: 100%;
+}
+.cards__list{
+  list-style: none; 
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  /* flex-direction: column; */
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+ 
 }
 .cards__text{
+ 
 font-family: Cabinet Grotesk;
 font-weight: 700;
 font-size: 20px;
@@ -10,14 +56,4 @@ letter-spacing: 0%;
 color: #000000;
 margin: 40px 0px 34px;
 }
-.cardItems{
-display: flex;
-justify-content: center;
-gap: 20px;
-}
-.cardItems__list{
 
-}
-.cardItems__list-img{
-
-}
