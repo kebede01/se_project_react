@@ -7,12 +7,14 @@
  width: 323px;
 display: flex;
 justify-content: center;
-border-radius: 19px;
+
 border-color: 1px #0000004D;
 background: transparent;
 overflow: hidden;
 object-fit: cover;
 object-position: right;
+border: 1px solid #0000004D;
+border-radius: 20px;;
 }
 .card__name{
 margin: 0;
@@ -23,8 +25,7 @@ line-height: 20px;
 letter-spacing: 0%;
 padding: 2px 12px;
 background: #FFFFFF;
-
-display: inline;
+border-radius: 4px;
 color: #00000099;
 position: absolute;
 top: 15px;
@@ -33,6 +34,7 @@ align-items: center;
 
 .card__img{
 width: 100%;
+
 }
 .cards__list{
   list-style: none; 

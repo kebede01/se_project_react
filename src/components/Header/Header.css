@@ -2,20 +2,39 @@
 display: flex;
 align-items: center;
 padding: 32px 0px 28px;
+
 }
 .header__logo{
 margin-right: 24px;
 }
 .header__location-date{
   margin: 0;
+  font-family: Cabinet Grotesk;
+font-weight: 700;
+font-size: 20px;
+line-height: 24px;
+letter-spacing: 0%;
+
 }
 .header__button{
   margin-left: auto;
   cursor: pointer;
+  font-family: Cabinet Grotesk;
+font-weight: 700;
+font-size: 20px;
+line-height: 24px;
+letter-spacing: 0%;
+border: none;
 }
 
 .header__avatar-name{
 margin: 0 0 0 20px;
+font-family: Cabinet Grotesk;
+font-weight: 700;
+font-size: 20px;
+line-height: 100%;
+letter-spacing: 0%;
+
 }
 .header__avatar-img{
 margin-left: 12px;

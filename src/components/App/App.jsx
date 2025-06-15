@@ -9,52 +9,54 @@ import {
 } from "../../utils/constants.js";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import ItemModal from "../ItemModal/ItemModal";
-import WeatherApi from '../../utils/WeatherApi.js'
-import { filterWeatherData } from '../../utils/WeatherApi.js'
+import WeatherApi from "../../utils/WeatherApi.js";
+import { filterWeatherData } from "../../utils/WeatherApi.js";
+import Footer from '../Footer/Footer.jsx';
 function App() {
   const [weatherData, setWeatherData] = useState({
     type: "cold",
     temp: 96,
   });
-  const [activeModal, setActiveModal] = useState("");
+  const [activeModal, setActiveModal] = useState();
   const [selectedCard, setSelectedCard] = useState({});
-  const handleButtonClick = () => {
-    setActiveModal("add-garment");
+  const handleAddGarment = () => {
+    setActiveModal("add garment");
   };
-  const closeActiveModal = () => {
-    setActiveModal("");
+  const handleCloseModal = () => {
+    setActiveModal();
   };
   const handleCardClick = (card) => {
-   
-    setActiveModal("preview")
-    setSelectedCard(card)
-  }
+    setActiveModal("preview");
+    setSelectedCard(card);
+  };
 
-  useEffect(
-    () => {
-      WeatherApi({ coordinates }, APIkey)
-        .then(data => {
-          // Use the data here
-          const filteredData = filterWeatherData(data);
-        
-         setWeatherData(filteredData)
-          console.log(data);
-        })
-        .catch(error => {
-          console.error('Error:', error);
-        });
-    }, []);
+  useEffect(() => {
+    WeatherApi({ coordinates }, APIkey)
+      .then((data) => {
+        // Use the data here
+        const filteredData = filterWeatherData(data);
+
+        setWeatherData(filteredData);
+        console.log(data);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  }, []);
   return (
     <>
       <div className="page">
         <div className="page__content">
-          <Header onClickAdd={handleButtonClick} weatherData={weatherData } />
-          <Main weatherData={weatherData} handleCardClick={handleCardClick}/>
+          <Header
+            handleAddGarment={handleAddGarment}
+            weatherData={weatherData}
+          />
+          <Main weatherData={weatherData} handleCardClick={handleCardClick} />
           <ModalWithForm
             buttonText="Add garment"
             title="New garment"
             activeModal={activeModal}
-            closeModal={closeActiveModal}
+            handleCloseModal={handleCloseModal}
           >
             <label htmlFor="name" className="modal__label">
               Name
@@ -65,7 +67,6 @@ function App() {
                 placeholder="Name"
                 required
               />
-              <span id="name-error" className="modal__error"></span>
             </label>
 
             <label htmlFor="imageUrl" className="modal__label">
@@ -77,13 +78,9 @@ function App() {
                 placeholder=" Image URL"
                 required
               />
-              <span id="description-error" className="modal__error"></span>
             </label>
             <fieldset className="modal__radio-buttons">
-              <legend className="modal__legend">
-                {" "}
-                Select the weather type
-              </legend>
+              <legend className="modal__legend">Select the weather type</legend>
               <label
                 htmlFor="hot"
                 className="modal__label modal__label_type-radio"
@@ -103,13 +100,19 @@ function App() {
               <label
                 htmlFor="warm"
                 className="modal__label modal__label_type-radio"
-              >
+              > 
                 <input type="radio" id="warm" className="modal__radio-input" />{" "}
-                Warm
+               Warm
               </label>
             </fieldset>
           </ModalWithForm>
-          <ItemModal activeModal={ activeModal} selectedCardItem={selectedCard} onClosePreview={closeActiveModal}/>
+          <ItemModal
+            activeModal={activeModal}
+            selectedCard={selectedCard}
+            // handleCardClick={handleCardClick}
+            handleCloseModal={handleCloseModal}
+          />
+          <Footer/>
         </div>
       </div>
     </>

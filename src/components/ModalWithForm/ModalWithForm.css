@@ -13,38 +13,39 @@
   opacity: 0;
   transition: visibility 0.5s linear, opacity 0.5s linear;
   padding: 0 10px;
-  object-fit: cover;
-  box-sizing: border-box;
-  overflow: hidden;
+
+ 
 }
+
 .modal__content{
   display: flex;
   flex-direction: column;
   position:relative;
   background-color:#FFFFFF;
-  padding: 20px 28px 36px;
-  max-width: 496px;
+ max-width: 496px;
   width: 100%;
   border-radius: 20px;
+  object-fit: cover;
   box-sizing: border-box;
+  overflow: hidden;
+  padding: 28px 28px 36px;;
 }
+
 .modal_opened {
   visibility: visible;
   opacity: 1;
 }
 
 .modal__form {
+  padding: 0px;
   background-color: #fff;
   display: flex;
   flex-direction: column;
   gap: 24px;
-  padding: 12px;
- 
   position: relative;
   border-radius: 8px;
   box-sizing: border-box;
-  overflow: hidden;
-}
+ }
 
 .modal__close {
   background-color: transparent;
@@ -57,7 +58,7 @@
   right: 28px;
   opacity: 0.4;
   transition: 1s;
-  /* background-image: url("../images/close-img.svg"); */
+  background-image: url("../../assets/close-img.svg");
 }
 
 .modal__close-btn:hover {
@@ -113,19 +114,11 @@ letter-spacing: 0%;
 }
 
 .modal__radio-buttons{
-  display: flex;
-  flex-direction: column;
+  /* display: flex;
+  flex-direction: column; */
   border: none;
   padding: 0;
-}
-.modal__label_type-radio{
-  display: flex;
-  justify-content: center;
-  /* align-items: center; */
-  gap: 8px;
-  margin-bottom: 8px;
-}
-
+} 
 
 
 
@@ -141,7 +134,14 @@ letter-spacing: 0%;
   font-size: 16px;
   margin-top: 26px;
 }
-
+.modal__label_type-radio{
+     /* display: flex;
+     justify-content: center; */
+    /* align-items: center; */
+    gap: 8px; /* space between radio and label */
+    margin-bottom: 10px;
+   
+}
 .modal__legend{
   font-family: Cabinet Grotesk;
 font-weight: 700;
@@ -155,30 +155,8 @@ margin-top: 24px;
 margin: 0;
 }
 
-/* .modal__preview {
-  max-height: 80vh;
-  width: 100%;
-  border-radius: 8px;
-  object-fit: cover;
-  display: block;
-} */
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-@media (max-width: 320px) {
+/*@media (max-width: 320px) {
   .modal__caption {
   
   }
@@ -227,4 +205,4 @@ margin: 0;
   .modal__form_delete {
    
   }
-}
+} */

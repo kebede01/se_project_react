@@ -1,13 +1,22 @@
 import "./Header.css";
 import logo from "../../assets/logo.svg";
 import avatar from "../../assets/avatar.svg";
-function Header({ onClickAdd , weatherData}) {
-   const currentDate = new Date().toLocaleString('default', { month: 'long', day: 'numeric' });
+function Header({ handleAddGarment, weatherData }) {
+  const currentDate = new Date().toLocaleString("default", {
+    month: "long",
+    day: "numeric",
+  });
   return (
     <header className="header">
       <img src={logo} alt="logo" className="header__logo" />
-      <p className="header__location-date">{currentDate} { weatherData.city}</p>
-      <button type="button" className="header__button" onClick={onClickAdd}>
+      <p className="header__location-date">
+        {currentDate} {weatherData.city}
+      </p>
+      <button
+        type="button"
+        className="header__button"
+        onClick={handleAddGarment}
+      >
         + Add clothes
       </button>
       <p className="header__avatar-name">Terrence Tegegne</p>

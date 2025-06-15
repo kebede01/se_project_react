@@ -1,0 +1,52 @@
+
+ .modal__content_preview{
+padding: 0;
+} 
+
+.modal__card{
+ overflow: hidden;
+ box-sizing: border-box;
+
+}
+.modal__image{
+  max-height: 80vh;
+  width: 100%;
+  border-radius: 8px;
+  object-fit: cover;
+  display: block;
+}
+.modal__close-btn_type-preview {
+  background: none;
+  top: 27px;
+  right: 27px;
+  opacity: 1;
+  background-image: url("../../assets//close-icon-white.png");
+  background-repeat: no-repeat;
+}
+.modal__close-btn_type-preview:hover {
+  opacity: 0;
+}
+.modal__footer{
+  padding-left: 32px;
+
+}
+.modal__caption{
+font-family: Cabinet Grotesk;
+font-weight: 700;
+font-size: 20px;
+line-height: 24px;
+letter-spacing: 0%;
+margin: 20px 0 12px;;
+
+}
+.modal__weather{
+font-family: Cabinet Grotesk;
+font-weight: 700;
+font-size: 20px;
+line-height: 24px;
+letter-spacing: 0%;
+margin: 0 0 32px;;
+}
+.modal__content_type-image{
+  padding: 0px 0px 32px 0px;
+}
