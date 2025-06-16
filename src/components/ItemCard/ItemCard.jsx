@@ -1,8 +1,5 @@
 import "./ItemCard.css";
-import cap from "../../assets/cap.svg";
-import shorts from "../../assets/shorts.svg";
-import sneakers from "../../assets/sneakers.svg";
-import shirt from "../../assets/shirt.svg";
+
 function ItemCard({ item,  handleCardClick }) {
   const handleCallBack = () => {
     handleCardClick (item);

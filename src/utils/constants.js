@@ -108,11 +108,11 @@ export const defaultWeatherOptions = {
   }
 }
 export const APIkey = '9cf65f89056b77b01378a8a5998e91cb';
-export const coordinates = {
+ const coordinates = {
   lat: 47.60621000 ,
   lon: -122.33207000,
 }
-
+export default coordinates;
 // https://api.openweathermap.org/data/3.0/onecall/overview?lat={lat}&lon={lon}&appid={APIkey}
 
  
