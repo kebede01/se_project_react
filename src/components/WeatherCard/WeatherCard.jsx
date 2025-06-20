@@ -9,14 +9,14 @@ function WeatherCard({ weatherCard }) {
 
   let weatherOption;
   if (filteredWeatherOptions.length === 0) {
-    weatherOption = defaultWeatherOptions[WeatherCard.isDay ? "day" : "night" ];
+    weatherOption = defaultWeatherOptions[weatherCard.isDay ? "day" : "night" ];
   } else {
     weatherOption = filteredWeatherOptions[0]
   }
 
   return (
     <section className="weather-card">
-      <p className="weather-card__temp">{weatherCard.temp} degree</p>
+      <p className="weather-card__temp">{weatherCard.temp}&deg;F</p>
       <img src={weatherOption?.url} alt={`${weatherOption?.condition}-weather-image`} className="weather-card__img" />
       
     </section>

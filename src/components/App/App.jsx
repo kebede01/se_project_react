@@ -8,14 +8,18 @@ import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import ItemModal from "../ItemModal/ItemModal";
 import weatherApiData from "../../utils/WeatherApi.js";
 import { filterWeatherData } from "../../utils/WeatherApi.js";
+import { defaultClothingItems } from "../../utils/constants.js";
 import Footer from '../Footer/Footer.jsx';
 function App() {
   const [weatherData, setWeatherData] = useState({
     type: "cold",
     temp: 96,
   });
-  const [activeModal, setActiveModal] = useState();
+  const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
+  const [clothingItems, setClothingItems] = useState(defaultClothingItems);
+  const [name, setName] = useState("");
+   const [image, setImage] = useState("");
   const handleAddGarment = () => {
     setActiveModal("add garment");
   };
@@ -26,6 +30,7 @@ function App() {
     setActiveModal("preview");
     setSelectedCard(card);
   };
+
 
   useEffect(() => {
     weatherApiData( coordinates , APIkey)
@@ -41,19 +46,20 @@ function App() {
       });
   }, []);
   return (
-    <>
+    
       <div className="page">
         <div className="page__content">
           <Header
             handleAddGarment={handleAddGarment}
             weatherData={weatherData}
           />
-          <Main weatherData={weatherData} handleCardClick={handleCardClick} />
+          <Main weatherData={weatherData} handleCardClick={handleCardClick}  clothingItems={clothingItems}/>
           <ModalWithForm
             buttonText="Add garment"
             title="New garment"
             activeModal={activeModal}
-            handleCloseModal={handleCloseModal}
+          handleCloseModal={handleCloseModal}
+          isOpen={activeModal === "add garment"}
           >
             <label htmlFor="name" className="modal__label">
               Name
@@ -62,7 +68,9 @@ function App() {
                 type="text"
                 className="modal__input"
                 placeholder="Name"
-                required
+              required
+              name= "name"
+               onChange={(e) => setName(e.target.value)}
               />
             </label>
 
@@ -72,8 +80,10 @@ function App() {
                 id="imageUrl"
                 type="text"
                 className="modal__input"
-                placeholder=" Image URL"
-                required
+              placeholder=" Image URL"
+              name="imageUrl"
+              required
+              onChange={(e) => setImage(e.target.value)}
               />
             </label>
             <fieldset className="modal__radio-buttons">
@@ -82,7 +92,7 @@ function App() {
                 htmlFor="hot"
                 className="modal__label modal__label_type-radio"
               >
-                <input type="radio" id="hot" className="modal__radio-input" checked="checked"/>
+                <input type="radio" id="hot" className="modal__radio-input" name="weather"/>
               <span className="modal__span">Hot</span>
               </label>
 
@@ -90,15 +100,15 @@ function App() {
                 htmlFor="cold"
                 className="modal__label modal__label_type-radio"
               >
-                <input type="radio" id="cold" className="modal__radio-input" />
-               <span className="modal__span">Cold</span>
+                <input type="radio" id="cold" className="modal__radio-input" name="weather"  />
+               <span className="modal__span" >Cold</span>
               </label>
 
               <label
                 htmlFor="warm"
                 className="modal__label modal__label_type-radio"
               > 
-                <input type="radio" id="warm" className="modal__radio-input" />
+                <input type="radio" id="warm" className="modal__radio-input" name="weather" />
                <span className="modal__span">Warm</span>
               </label>
             </fieldset>
@@ -112,7 +122,7 @@ function App() {
           <Footer/>
         </div>
       </div>
-    </>
+    
   );
 }
 export default App;

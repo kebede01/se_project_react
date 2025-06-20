@@ -24,6 +24,10 @@ margin-right: 24px;
   border: none;
 }
 
+.header__user-container{
+  display: flex;
+  align-items: center;
+}
 .header__avatar-name{
 margin: 0 0 0 20px;
 line-height: 100%;
