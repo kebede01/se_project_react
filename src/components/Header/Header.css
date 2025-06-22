@@ -34,4 +34,7 @@ line-height: 100%;
 }
 .header__avatar-img{
 margin-left: 12px;
+width:35px;
+height: 35px;
+border-radius: 50%;
 }

@@ -1,5 +1,24 @@
-### This project is aiming at building an app that suggests the type of cloth suitable for the current weather and specified location
-- #### It makes use of react and vite libraries and tools
-- #### It draws current weather data using API request
-- #### Cloth types are hard coded and kept in constants.js file
-- #### The app will add more features in the coming sprints.
+
+# WTWR (What to Wear?) Project
+
+## About
+This project is building an app that suggests the type of clothing suitable for the current weather and specified location.
+
+## Technologies Used
+- React
+- Vite
+- Weather API for current weather data
+
+## Features
+- **Real-time weather data** using API requests
+- **Clothing suggestions** based on weather conditions
+- Clothing types are stored in `constants.js` file
+
+## Future Development
+The app will add more features in the coming sprints.
+
+## How to Run
+```bash
+npm install
+npm run dev
+```

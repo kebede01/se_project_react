@@ -1,7 +1,7 @@
 import "./Header.css";
 import logo from "../../assets/logo.svg";
-import avatar from "../../assets/avatar.svg";
-function Header({ handleAddGarment, weatherData }) {
+import avatar from "../../assets/myavatar.jpg";
+function Header({ handleAddGarment, weatherData, avatarName }) {
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
     day: "numeric",
@@ -20,7 +20,7 @@ function Header({ handleAddGarment, weatherData }) {
         + Add clothes
       </button>
       <div className="header__user-container"></div>
-      <p className="header__avatar-name">Terrence Tegegne</p>
+      <p className="header__avatar-name">{ avatarName}</p>
       <img src={avatar} alt="avatar" className="header__avatar-img" />
     </header>
   );

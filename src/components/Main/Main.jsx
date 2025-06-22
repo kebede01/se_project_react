@@ -5,7 +5,7 @@ import ItemCard from "../ItemCard/ItemCard";
 function Main({ weatherData, handleCardClick, clothingItems}) {
   return (
     <main className="main">
-      <WeatherCard weatherCard={weatherData} />
+      <WeatherCard weatherData={weatherData} />
       <section className="cards">
         <p className="cards__text">
           Today is {weatherData.temp}&deg;F / You may want to wear:

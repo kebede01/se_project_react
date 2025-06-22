@@ -1,5 +1,5 @@
 
-const weatherApiData = ({ lat, lon}, APIkey) => {
+export const weatherApiData = ({ lat, lon}, APIkey) => {
 
 
   return fetch(
@@ -13,13 +13,12 @@ const weatherApiData = ({ lat, lon}, APIkey) => {
       return Promise.reject(`Error: ${res.status} `);
     }
   });
-  
-}
+  }
 
 export const filterWeatherData = (data) => {
   const result = {};
   result.city = data.name;
-  result.temp = data.main.temp;
+  result.temp = Math.round(data.main.temp);
   result.condition = data.weather[0].main.toLowerCase();
   result.type = getWeatherType(result.temp)
   result.isDay = isDay(data.sys, Date.now());
@@ -40,4 +39,4 @@ const isDay = ({ sunrise, sunset }, now) => {
 return (sunrise * 1000 < now && now < sunset * 1000); 
  }
 
- export default weatherApiData;
+ 

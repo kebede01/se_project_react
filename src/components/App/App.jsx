@@ -2,23 +2,23 @@ import { useState, useEffect } from "react";
 import "./App.css";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
-import { APIkey } from "../../utils/constants.js";
-import coordinates from "../../utils/constants.js";
+import { APIkey, coordinates, defaultClothingItems } from "../../utils/constants.js";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import ItemModal from "../ItemModal/ItemModal";
-import weatherApiData from "../../utils/WeatherApi.js";
-import { filterWeatherData } from "../../utils/WeatherApi.js";
-import { defaultClothingItems } from "../../utils/constants.js";
+import { filterWeatherData, weatherApiData} from "../../utils/WeatherApi.js";
+
 import Footer from '../Footer/Footer.jsx';
 function App() {
   const [weatherData, setWeatherData] = useState({
     type: "cold",
     temp: 96,
+    city: "Seattle",
   });
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
   const [clothingItems, setClothingItems] = useState(defaultClothingItems);
   const [name, setName] = useState("");
+  const [avatarName, setAvatarName] = useState("Kebede Tekle");
    const [image, setImage] = useState("");
   const handleAddGarment = () => {
     setActiveModal("add garment");
@@ -35,12 +35,9 @@ function App() {
   useEffect(() => {
     weatherApiData( coordinates , APIkey)
       .then((data) => {
-        // Use the data here
-        const filteredData = filterWeatherData(data);
-
+       const filteredData = filterWeatherData(data);
         setWeatherData(filteredData);
-        console.log(data);
-      })
+     })
       .catch((error) => {
         console.error("Error:", error);
       });
@@ -50,8 +47,9 @@ function App() {
       <div className="page">
         <div className="page__content">
           <Header
-            handleAddGarment={handleAddGarment}
-            weatherData={weatherData}
+          handleAddGarment={handleAddGarment}
+          weatherData={weatherData}
+          avatarName={avatarName}
           />
           <Main weatherData={weatherData} handleCardClick={handleCardClick}  clothingItems={clothingItems}/>
           <ModalWithForm
@@ -69,7 +67,8 @@ function App() {
                 className="modal__input"
                 placeholder="Name"
               required
-              name= "name"
+              name="name"
+               value={name}
                onChange={(e) => setName(e.target.value)}
               />
             </label>
@@ -82,6 +81,7 @@ function App() {
                 className="modal__input"
               placeholder=" Image URL"
               name="imageUrl"
+              value={image}
               required
               onChange={(e) => setImage(e.target.value)}
               />
@@ -116,7 +116,6 @@ function App() {
           <ItemModal
             activeModal={activeModal}
             selectedCard={selectedCard}
-            // handleCardClick={handleCardClick}
             handleCloseModal={handleCloseModal}
           />
           <Footer/>
