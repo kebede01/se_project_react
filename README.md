@@ -22,3 +22,12 @@ The app will add more features in the coming sprints.
 npm install
 npm run dev
 ```
+## New Development 
+The app has added more new features using 'React' features.
+
+## Additional Technologies Used 
+- A mock server  mimicing  the behavior of the backend 
+## New Features
+- A temperature unit toggle switch using React context
+- A profile page route using React Router
+- Form submission using controlled components or refs
