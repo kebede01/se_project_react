@@ -1,6 +1,8 @@
 import "./Header.css";
 import logo from "../../assets/logo.svg";
 import avatar from "../../assets/myavatar.jpg";
+import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
+
 function Header({ handleAddGarment, weatherData, avatarName }) {
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
@@ -12,6 +14,7 @@ function Header({ handleAddGarment, weatherData, avatarName }) {
       <p className="header__location-date">
         {currentDate} {weatherData.city}
       </p>
+       <ToggleSwitch/>
       <button
         type="button"
         className="header__button"
