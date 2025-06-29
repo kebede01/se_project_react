@@ -8,6 +8,7 @@ import ItemModal from "../ItemModal/ItemModal";
 import { filterWeatherData, weatherApiData} from "../../utils/WeatherApi.js";
 
 import Footer from '../Footer/Footer.jsx';
+import CurrentTemperatureUnitContext from '../../contexts/CurrentTemperatureUnitContext.js'
 function App() {
   const [weatherData, setWeatherData] = useState({
     type: "cold",
@@ -19,7 +20,8 @@ function App() {
   const [clothingItems, setClothingItems] = useState(defaultClothingItems);
   const [name, setName] = useState("");
   const [avatarName, setAvatarName] = useState("Kebede Tekle");
-   const [image, setImage] = useState("");
+  const [image, setImage] = useState("");
+  const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState('F');
   const handleAddGarment = () => {
     setActiveModal("add garment");
   };
@@ -31,6 +33,9 @@ function App() {
     setSelectedCard(card);
   };
 
+  const handleToggleSwitchChange = () => {
+  setCurrentTemperatureUnit(currentTemperatureUnit === "F" ? "C" : "F")
+  }
 
   useEffect(() => {
     weatherApiData( coordinates , APIkey)
@@ -43,7 +48,7 @@ function App() {
       });
   }, []);
   return (
-    
+    <CurrentTemperatureUnitContext.Provider value={{ currentTemperatureUnit, handleToggleSwitchChange }}>
       <div className="page">
         <div className="page__content">
           <Header
@@ -121,7 +126,7 @@ function App() {
           <Footer/>
         </div>
       </div>
-    
+    </CurrentTemperatureUnitContext.Provider>
   );
 }
 export default App;
