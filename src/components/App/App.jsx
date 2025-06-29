@@ -12,7 +12,7 @@ import CurrentTemperatureUnitContext from '../../contexts/CurrentTemperatureUnit
 import AddItemModal from "../AddItemModal/AddItemModal.jsx";
 import { Routes, Route } from 'react-router-dom';
 import Profile from "../Profile/Profile";
-
+import { getItems, postItems} from "../../utils/api.js";
 function App() {
  const [isWeatherDataLoaded, setIsWeatherDataLoaded] = useState(false);
   const [weatherData, setWeatherData] = useState({
@@ -46,16 +46,15 @@ function App() {
   }
  
   const handleSubmitAddItemModal = (name, image, weatherType) => {
-      
-      const  newID = Math.max(...clothingItems.map((item) => item._id)) + 1;
-      setClothingItems((prevValue) => {
-       return [...prevValue, { _id: newID , name, weather: weatherType, link: image,  }]
+    postItems(name, image, weatherType).then(data => {
+     setClothingItems((prevValue) => {
+       return [...prevValue, data]
     })
-   handleCloseModal()
+      })
+    handleCloseModal()
   }
 
 
- 
  useEffect(() => {
     weatherApiData( coordinates , APIkey)
       .then((data) => {
@@ -69,11 +68,7 @@ function App() {
  }, []);
   
   useEffect(() => {
-    fetch('http://localhost:3001/items')
-      .then((res) => {
-        if (res.ok) { return res.json(); }
-        else { Promise.reject(`Error: ${res.status}`) }
-      })
+      getItems()
       .then(data => setClothingItems(data))
       .catch(console.error);
       
