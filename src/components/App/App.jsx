@@ -10,6 +10,8 @@ import { filterWeatherData, weatherApiData} from "../../utils/WeatherApi.js";
 import Footer from '../Footer/Footer.jsx';
 import CurrentTemperatureUnitContext from '../../contexts/CurrentTemperatureUnitContext.js'
 import AddItemModal from "../AddItemModal/AddItemModal.jsx";
+import { Routes, Route } from 'react-router-dom';
+import Profile from "../Profile/Profile";
 function App() {
  const [isWeatherDataLoaded, setIsWeatherDataLoaded] = useState(false);
   const [weatherData, setWeatherData] = useState({
@@ -70,8 +72,16 @@ function App() {
           weatherData={weatherData}
           avatarName={avatarName}
           />
-          <Main weatherData={weatherData} handleCardClick={handleCardClick}  clothingItems={clothingItems}/>
-          <AddItemModal
+          <Routes>
+            <Route path="/" element={ 
+              <Main weatherData={weatherData} handleCardClick={handleCardClick}  clothingItems={clothingItems}/>
+            } />
+            <Route path="/profile" element={<Profile weatherData={weatherData} handleCardClick={handleCardClick}  clothingItems={clothingItems}/>} />
+          </Routes>
+          
+       
+          <Footer />
+           <AddItemModal
             activeModal={activeModal}
             onCloseModal={handleCloseModal}
             isOpen={activeModal === "add garment"}
@@ -83,7 +93,6 @@ function App() {
             handleCloseModal={handleCloseModal}
             
           />
-          <Footer/>
         </div>
       </div>
     </CurrentTemperatureUnitContext.Provider>
