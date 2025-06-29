@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import "./App.css";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
-import { APIkey, coordinates, defaultClothingItems } from "../../utils/constants.js";
+import { APIkey, coordinates} from "../../utils/constants.js";
 
 import ItemModal from "../ItemModal/ItemModal";
 import { filterWeatherData, weatherApiData} from "../../utils/WeatherApi.js";
@@ -12,6 +12,7 @@ import CurrentTemperatureUnitContext from '../../contexts/CurrentTemperatureUnit
 import AddItemModal from "../AddItemModal/AddItemModal.jsx";
 import { Routes, Route } from 'react-router-dom';
 import Profile from "../Profile/Profile";
+
 function App() {
  const [isWeatherDataLoaded, setIsWeatherDataLoaded] = useState(false);
   const [weatherData, setWeatherData] = useState({
@@ -23,9 +24,9 @@ function App() {
   });
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
-  const [clothingItems, setClothingItems] = useState(defaultClothingItems);
+  const [clothingItems, setClothingItems] = useState([]);
  
-  const [avatarName, setAvatarName] = useState("Kebede Tekle");
+
 
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState('F');
  
@@ -44,13 +45,16 @@ function App() {
   setCurrentTemperatureUnit(currentTemperatureUnit === "F" ? "C" : "F")
   }
  
- const handleSubmitAddItemModal = (name, image, weatherType) => {
+  const handleSubmitAddItemModal = (name, image, weatherType) => {
+      
       const  newID = Math.max(...clothingItems.map((item) => item._id)) + 1;
       setClothingItems((prevValue) => {
        return [...prevValue, { _id: newID , name, weather: weatherType, link: image,  }]
     })
    handleCloseModal()
   }
+
+
  
  useEffect(() => {
     weatherApiData( coordinates , APIkey)
@@ -62,7 +66,19 @@ function App() {
       .catch((error) => {
         console.error("Error:", error);
       });
-  }, []);
+ }, []);
+  
+  useEffect(() => {
+    fetch('http://localhost:3001/items')
+      .then((res) => {
+        if (res.ok) { return res.json(); }
+        else { Promise.reject(`Error: ${res.status}`) }
+      })
+      .then(data => setClothingItems(data))
+      .catch(console.error);
+      
+  }, [])
+ 
   return (
     <CurrentTemperatureUnitContext.Provider value={{ currentTemperatureUnit, handleToggleSwitchChange }}>
       <div className="page">
@@ -70,7 +86,6 @@ function App() {
           <Header
           handleAddGarment={handleAddGarment}
           weatherData={weatherData}
-          avatarName={avatarName}
           />
           <Routes>
             <Route path="/" element={ 

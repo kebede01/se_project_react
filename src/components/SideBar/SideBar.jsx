@@ -1,5 +1,5 @@
 import './SideBar.css'
-import avatar from '../../assets/avatar.svg'
+import avatar from '../../assets/myavatar.jpg'
 const SideBar = () => {
   return (
     <section className='side-bar'>

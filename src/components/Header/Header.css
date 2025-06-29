@@ -30,10 +30,20 @@ margin-right: 24px;
 .header__avatar-name{
 margin: 0 0 0 20px;
 line-height: 100%;
+color: black;
 }
 .header__avatar-img{
 margin-left: 12px;
-width:35px;
-height: 35px;
+width:40px;
+height: 40px;
 border-radius: 50%;
+}
+.header__user-container__link{
+  text-decoration: none;
+  color: black;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

@@ -1,17 +1,31 @@
 import "./Header.css";
 import logo from "../../assets/logo.svg";
 import avatar from "../../assets/myavatar.jpg";
-import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 
-function Header({ handleAddGarment, weatherData, avatarName }) {
+import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
+import { Link } from 'react-router-dom';
+function Header({ handleAddGarment, weatherData}) {
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
     day: "numeric",
   });
+    
+  const avatarName = "kebede tekle";
+    // Avatar name to title case
+  const  toTitleCase = (str) => {
+    return str
+      .toLowerCase()
+      .split(' ')
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(' ');
+    
+    }
   return (
     <header className="header">
-      <img src={logo} alt="logo" className="header__logo" />
-      <p className="header__location-date">
+      <Link to="/">
+        <img src={logo } alt="WTWR logo" className="header__logo" />
+      </Link>
+     <p className="header__location-date">
         {currentDate} {weatherData.city}
       </p>
        <ToggleSwitch/>
@@ -23,8 +37,11 @@ function Header({ handleAddGarment, weatherData, avatarName }) {
         + Add clothes
       </button>
       <div className="header__user-container"></div>
-      <p className="header__avatar-name">{ avatarName}</p>
-      <img src={avatar} alt="avatar" className="header__avatar-img" />
+      <Link to="/profile" className="header__user-container__link">
+        <p className="header__avatar-name">{ avatarName ? toTitleCase(avatarName) : "User name"}</p>
+        <img src={ avatar } alt="avatar" className="header__avatar-img" />
+      </Link>
+    
     </header>
   );
 }
