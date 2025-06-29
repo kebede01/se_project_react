@@ -10,10 +10,13 @@ import { filterWeatherData, weatherApiData} from "../../utils/WeatherApi.js";
 import Footer from '../Footer/Footer.jsx';
 import CurrentTemperatureUnitContext from '../../contexts/CurrentTemperatureUnitContext.js'
 function App() {
+ const [isWeatherDataLoaded, setIsWeatherDataLoaded] = useState(false);
   const [weatherData, setWeatherData] = useState({
     type: "cold",
-    temp: 96,
-    city: "Seattle",
+    temp: {F: isWeatherDataLoaded ? 999 : "Loading...", C: 999},
+    city: "New York",
+    isDay: false,
+    condition: ""
   });
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
@@ -22,6 +25,7 @@ function App() {
   const [avatarName, setAvatarName] = useState("Kebede Tekle");
   const [image, setImage] = useState("");
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState('F');
+ 
   const handleAddGarment = () => {
     setActiveModal("add garment");
   };
@@ -37,11 +41,12 @@ function App() {
   setCurrentTemperatureUnit(currentTemperatureUnit === "F" ? "C" : "F")
   }
 
-  useEffect(() => {
+ useEffect(() => {
     weatherApiData( coordinates , APIkey)
       .then((data) => {
        const filteredData = filterWeatherData(data);
         setWeatherData(filteredData);
+        setIsWeatherDataLoaded(true);
      })
       .catch((error) => {
         console.error("Error:", error);
