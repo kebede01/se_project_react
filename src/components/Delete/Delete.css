@@ -18,7 +18,6 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  /* align-items: center; */
   position: relative;
   background-color: #ffffff;
   max-width: 670px;
@@ -31,6 +30,7 @@
 }
 .modal__content_type-delete {
   height: 280px;
+  align-items: center;
 }
 .modal_opened {
   visibility: visible;
