@@ -122,25 +122,27 @@ function App() {
           </Routes>
 
           <Footer name="Kebede Tekle" />
-          <AddItemModal
+            <Delete
             activeModal={activeModal}
             onCloseModal={handleCloseModal}
-            isOpen={activeModal === "add garment"}
-            setClothingItems={setClothingItems}
-            onSubmitAddItemModal={handleSubmitAddItemModal}
+            onDeleteModalDeletButton={handleDeleteModalDeletButton}
+            selectedCard={selectedCard}
           />
+        
           <ItemModal
             activeModal={activeModal}
             selectedCard={selectedCard}
             handleCloseModal={handleCloseModal}
             onItemModalDeletButton={handleItemModalDeletButton}
           />
-          <Delete
+            <AddItemModal
             activeModal={activeModal}
             onCloseModal={handleCloseModal}
-            onDeleteModalDeletButton={handleDeleteModalDeletButton}
-            selectedCard={selectedCard}
+            isOpen={activeModal === "add garment"}
+            setClothingItems={setClothingItems}
+            onSubmitAddItemModal={handleSubmitAddItemModal}
           />
+        
         </div>
       </div>
     </CurrentTemperatureUnitContext.Provider>

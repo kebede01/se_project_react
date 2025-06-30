@@ -18,19 +18,19 @@ function ItemModal({
           onClick={handleCloseModal}
         ></button>
         <img src={selectedCard.imageUrl} alt="" className="modal__image" />
-        <div className="modal__footer">
+        <div className="modal__footer modal__footer_text">
           <div className="modal__footer__heading">
-            <h2 className="modal__caption">{selectedCard.name}</h2>
+            <h2 className="modal__footer-name modal__footer_text">{selectedCard.name}</h2>
             <button
               type="button"
               onClick={onItemModalDeletButton}
-              className="modal__button"
+              className="modal__button-delete modal__footer_text"
             >
               Delete
             </button>
           </div>
 
-          <p className="modal__weather">Weather: {selectedCard.weather}</p>
+          <p className="modal__weather modal__footer_text">Weather: {selectedCard.weather}</p>
         </div>
       </div>
     </div>

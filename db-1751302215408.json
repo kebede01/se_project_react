@@ -71,6 +71,12 @@
       "name": "T-Shirt",
       "weather": "hot",
       "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/T-Shirt.png?etag=44ed1963c44ab19cd2f5011522c5fc09"
+    },
+    {
+      "name": "walking",
+      "imageUrl": "https://png.pngtree.com/png-clipart/20231110/original/pngtree-frosty-fashion-cozy-winter-hat-illustration-png-image_13525075.png",
+      "weather": "warm",
+      "_id": 17
     }
   ]
 }

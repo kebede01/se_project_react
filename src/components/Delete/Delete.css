@@ -17,6 +17,8 @@
 .modal__content {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  /* align-items: center; */
   position: relative;
   background-color: #ffffff;
   max-width: 670px;
@@ -37,8 +39,8 @@
 .modal__close-btn_type-preview {
   position: absolute;
   background: none;
-  top: 22px;
-  right: 22px;
+  top: 23px;
+  right: 23px;
   background-image: url("../../assets//close-img.svg");
   background-repeat: no-repeat;
   color: #0000004d;
@@ -46,15 +48,28 @@
 .modal__close-btn_type-preview:hover {
   opacity: 0;
 }
-
-.modal__button {
-  background-color: transparent;
-  border: none;
-  color: red;
+.modal__text {
   font-family: Cabinet Grotesk;
   font-weight: 700;
   font-size: 20px;
   line-height: 24px;
   letter-spacing: 0%;
-  margin: 40px 0px 24px;
+}
+.modal__title-delete {
+  text-align: center;
+  width: 367px;
+  margin-top: 60px 0 40px 0;
+}
+
+.modal__button {
+  background-color: transparent;
+  border: none;
+  color: #ff4d00;
+  margin: 0 0 24px 0;
+}
+
+.modal__button-cancel {
+  margin: 0 0 60px 0;
+  background: transparent;
+  border: none;
 }

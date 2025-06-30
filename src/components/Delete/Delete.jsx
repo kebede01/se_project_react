@@ -23,19 +23,23 @@ function DeleteModal({
           onClick={onCloseModal}
         ></button>
 
-        <h2 className="modal__caption">
+        <h2 className="modal__title-delete modal__text">
           Are you sure you want to delete this item? This action is
           irreversible.
         </h2>
         <button
           type="button"
-          className="modal__button"
+          className="modal__button modal__text"
           onClick={handleCallBack}
         >
           Yes delete item
         </button>
 
-        <button type="button" onClick={onCloseModal} className="modal__button">
+        <button
+          type="button"
+          onClick={onCloseModal}
+          className="modal__button-cancel modal__text"
+        >
           Cancel
         </button>
       </div>
