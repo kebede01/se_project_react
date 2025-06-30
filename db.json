@@ -1,12 +1,6 @@
 {
   "items": [
     {
-      "_id": 0,
-      "name": "Beanie",
-      "weather": "cold",
-      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Beanie.png?etag=bc10497cc80fa557f036e94f9999f7b2"
-    },
-    {
       "_id": 1,
       "name": "Boot",
       "weather": "cold",
@@ -61,12 +55,6 @@
       "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Sandals.png?etag=9bea85a77c0306586d2b71a33b626d41"
     },
     {
-      "_id": 10,
-      "name": "Scarf",
-      "weather": "cold",
-      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Scarf.png?etag=74efbee93810c926b5507e862c6cb76c"
-    },
-    {
       "_id": 11,
       "name": "Shorts",
       "weather": "Hot",
@@ -107,12 +95,6 @@
       "imageUrl": "https://png.pngtree.com/png-clipart/20231110/original/pngtree-frosty-fashion-cozy-winter-hat-illustration-png-image_13525075.png",
       "weather": "warm",
       "_id": 17
-    },
-    {
-      "name": "hoodie",
-      "imageUrl": "https://i.pinimg.com/originals/a3/3f/46/a33f46b608ebc23cfcd8130b04887e56.png",
-      "weather": "cold",
-      "_id": 18
     }
   ]
 }

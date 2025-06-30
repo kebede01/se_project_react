@@ -1,14 +1,9 @@
-import './Footer.css';
-function Footer() {
-
+import "./Footer.css";
+function Footer({ name }) {
   return (
     <footer className="footer ">
-      <div className="footer__container">
-        <p className="footer__text">Developed by Name Surname</p>
-        <span className='footer__span'>
-          {new Date().getFullYear()}
-       </span>
-      </div>
+      <p className=" footer__ content ">Developed by {name}</p>
+      <p className="footer__content ">{new Date().getFullYear()}</p>
     </footer>
   );
 }

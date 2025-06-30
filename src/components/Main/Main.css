@@ -1,7 +1,6 @@
-.main{
-padding: 0px 0px 28px;
-
-gap: 20px;
-object-fit: cover;
-overflow: hidden;
+.main {
+  padding: 0px 0px 28px;
+  gap: 20px;
+  object-fit: cover;
+  overflow: hidden;
 }

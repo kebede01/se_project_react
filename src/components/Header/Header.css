@@ -1,44 +1,44 @@
-.header{
-display: flex;
-align-items: center;
-padding: 32px 0px 28px;
-font-family: Cabinet Grotesk;
-font-weight: 700;
-font-size: 20px;
-letter-spacing: 0%;
+.header {
+  display: flex;
+  align-items: center;
+  padding: 32px 0px 28px;
+  font-family: Cabinet Grotesk;
+  font-weight: 700;
+  font-size: 20px;
+  letter-spacing: 0%;
 }
 
-.header__logo{
-margin-right: 24px;
+.header__logo {
+  margin-right: 24px;
 }
 
-.header__location-date{
+.header__location-date {
   margin: 0;
- line-height: 24px;
+  line-height: 24px;
 }
 
-.header__button{
+.header__button {
   cursor: pointer;
   line-height: 24px;
   border: none;
 }
 
-.header__user-container{
+.header__user-container {
   display: flex;
   align-items: center;
 }
-.header__avatar-name{
-margin: 0 0 0 20px;
-line-height: 100%;
-color: black;
+.header__avatar-name {
+  margin: 0 0 0 20px;
+  line-height: 100%;
+  color: black;
 }
-.header__avatar-img{
-margin-left: 12px;
-width:40px;
-height: 40px;
-border-radius: 50%;
+.header__avatar-img {
+  margin-left: 12px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
 }
-.header__user-container__link{
+.header__user-container__link {
   text-decoration: none;
   color: black;
   margin: 0;

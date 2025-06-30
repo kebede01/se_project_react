@@ -1,8 +1,8 @@
 import "./ItemCard.css";
 
-function ItemCard({ item,  handleCardClick }) {
+function ItemCard({ item, handleCardClick }) {
   const handleCallBack = () => {
-    handleCardClick (item);
+    handleCardClick(item);
   };
   return (
     <li className="card" id={item._id}>

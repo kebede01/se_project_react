@@ -1,9 +1,18 @@
-.side-bar{
+.side-bar {
   display: flex;
   gap: 16px;
 }
-.side-bar__avatar{
+.side-bar__avatar {
   width: 56px;
   height: 56px;
   border-radius: 50%;
+}
+.side-bar__avatar-name {
+  font-family: Cabinet Grotesk;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  color: #000000;
+  width: 157px;
 }
