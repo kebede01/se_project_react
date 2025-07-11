@@ -21,7 +21,6 @@ function ModalWithForm({
           name=""
           className="modal__form modal__form_add"
           onSubmit={onSubmitModal}
-          noValidate
         >
           {children}
           <button type="submit" className="modal__submit-btn">

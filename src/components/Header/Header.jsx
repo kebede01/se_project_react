@@ -40,7 +40,11 @@ function Header({ handleAddGarment, weatherData }) {
         <p className="header__avatar-name">
           {avatarName ? toTitleCase(avatarName) : "User name"}
         </p>
-        <img src={avatar} alt="avatar" className="header__avatar-img" />
+        <img
+          src={avatar}
+          alt={`image of ${avatarName}`}
+          className="header__avatar-img"
+        />
       </Link>
     </header>
   );
