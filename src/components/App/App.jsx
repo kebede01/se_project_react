@@ -47,7 +47,7 @@ function App() {
   };
 
   const handleSubmitAddItemModal = (name, image, weatherType) => {
-    postItems(name, image, weatherType)
+    postItems( name, image, weatherType )
       .then((data) => {
         setClothingItems((prevValue) => {
           return [...prevValue, data];
@@ -94,7 +94,7 @@ function App() {
 
   useEffect(() => {
     getItems()
-      .then((data) => setClothingItems(data))
+      .then(({ data }) => setClothingItems(data))
       .catch(console.error);
   }, []);
 
@@ -159,7 +159,7 @@ function App() {
             onItemModalDeletButton={handleItemModalDeletButton}
           />
           <AddItemModal
-            activeModal={activeModal}
+            // activeModal={activeModal}
             onCloseModal={handleCloseModal}
             isOpen={activeModal === "add garment"}
             setClothingItems={setClothingItems}

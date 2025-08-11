@@ -1,6 +1,7 @@
 import "./SideBar.css";
 import avatar from "../../assets/myavatar.jpg";
-const SideBar = ({ avatarName }) => {
+const SideBar = () => {
+  const avatarName = "kebede tekle";
   return (
     <section className="side-bar">
       <img
@@ -13,4 +14,5 @@ const SideBar = ({ avatarName }) => {
     </section>
   );
 };
+
 export default SideBar;

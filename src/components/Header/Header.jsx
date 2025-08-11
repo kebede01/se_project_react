@@ -35,7 +35,7 @@ function Header({ handleAddGarment, weatherData }) {
       >
         + Add clothes
       </button>
-      <div className="header__user-container"></div>
+      {/* <div className="header__user-container"></div> */}
       <Link to="/profile" className="header__user-container__link">
         <p className="header__avatar-name">
           {avatarName ? toTitleCase(avatarName) : "User name"}

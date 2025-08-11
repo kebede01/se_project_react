@@ -4,7 +4,9 @@ import ClothesSection from "../ClothesSection/ClothesSection";
 const Profile = ({ handleCardClick, clothingItems, handleAddGarment }) => {
   return (
     <section className="profile">
-      <SideBar className="profile__side-bar" avatarName={"kebede tekle"} />
+      <SideBar
+        className="profile__side-bar"
+        />
 
       <ClothesSection
         className="profile__clothes"

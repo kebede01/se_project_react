@@ -37,12 +37,6 @@
       "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Skirt.png?etag=27a6bea7e1b63218820d615876fa31d1"
     },
     {
-      "_id": 13,
-      "name": "Sneakers",
-      "weather": "warm",
-      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Sneakers.png?etag=3efeec41c1c78b8afe26859ca7fa7b6f"
-    },
-    {
       "_id": 14,
       "name": "Sunglasses",
       "weather": "hot",
@@ -53,6 +47,106 @@
       "name": "T-Shirt",
       "weather": "hot",
       "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/T-Shirt.png?etag=44ed1963c44ab19cd2f5011522c5fc09"
+    },
+    {
+      "name": "Lorem Ipsum",
+      "imageUrl": "https://i.pinimg.com/originals/a3/3f/46/a33f46b608ebc23cfcd8130b04887e56.png",
+      "weather": "warm",
+      "_id": 17
+    },
+    {
+      "name": "kebede",
+      "imageUrl": "https://img.freepik.com/free-photo/winter-clothes_1101-501.jpg?t=st=1715117347~exp=1715120947~hmac=0742ae51e08200e5b47a2c734beb1945c3f66606c9b391c803316f35b804c87f",
+      "weather": "warm",
+      "_id": 18
+    },
+    {
+      "name": {
+        "name": {
+          "name": "hoodie",
+          "image": "https://png.pngtree.com/png-clipart/20231110/original/pngtree-frosty-fashion-cozy-winter-hat-illustration-png-image_13525075.png",
+          "weatherType": "warm"
+        }
+      },
+      "_id": 19
+    },
+    {
+      "name": {
+        "name": {
+          "name": "hoodie",
+          "image": "https://img.freepik.com/free-photo/winter-clothes_1101-501.jpg?t=st=1715117347~exp=1715120947~hmac=0742ae51e08200e5b47a2c734beb1945c3f66606c9b391c803316f35b804c87f",
+          "weatherType": "warm"
+        }
+      },
+      "_id": 20
+    },
+    {
+      "name": {
+        "name": {
+          "name": "hoodie",
+          "image": "https://img.freepik.com/free-photo/winter-clothes_1101-501.jpg?t=st=1715117347~exp=1715120947~hmac=0742ae51e08200e5b47a2c734beb1945c3f66606c9b391c803316f35b804c87f",
+          "weatherType": "warm"
+        }
+      },
+      "_id": 21
+    },
+    {
+      "name": {
+        "name": {
+          "name": "hoodie",
+          "image": "https://i.pinimg.com/originals/a3/3f/46/a33f46b608ebc23cfcd8130b04887e56.png",
+          "weatherType": "warm"
+        }
+      },
+      "_id": 22
+    },
+    {
+      "name": {
+        "name": {
+          "name": "hoodie",
+          "image": "https://i.pinimg.com/originals/a3/3f/46/a33f46b608ebc23cfcd8130b04887e56.png",
+          "weatherType": "warm"
+        }
+      },
+      "_id": 23
+    },
+    {
+      "name": "hoodie",
+      "imageUrl": "https://i.pinimg.com/originals/a3/3f/46/a33f46b608ebc23cfcd8130b04887e56.png",
+      "weather": "warm",
+      "_id": 24
+    },
+    {
+      "name": {
+        "name": "walking",
+        "image": "https://i.pinimg.com/originals/a3/3f/46/a33f46b608ebc23cfcd8130b04887e56.png",
+        "weatherType": "warm"
+      },
+      "_id": 25
+    },
+    {
+      "name": {
+        "name": {
+          "name": "po",
+          "image": "https://i.pinimg.com/originals/a3/3f/46/a33f46b608ebc23cfcd8130b04887e56.png",
+          "weatherType": "warm"
+        }
+      },
+      "_id": 26
+    },
+    {
+      "name": {
+        "name": "po",
+        "image": "https://img.freepik.com/free-photo/winter-clothes_1101-501.jpg?t=st=1715117347~exp=1715120947~hmac=0742ae51e08200e5b47a2c734beb1945c3f66606c9b391c803316f35b804c87f",
+        "weatherType": "warm"
+      },
+      "_id": 27
+    },
+    {
+      "name": "po",
+      "imageUrl": "https://img.freepik.com/free-photo/winter-clothes_1101-501.jpg?t=st=1715117347~exp=1715120947~hmac=0742ae51e08200e5b47a2c734beb1945c3f66606c9b391c803316f35b804c87f",
+      "weather": "warm",
+      "_id": 28
     }
   ]
 }
