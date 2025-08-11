@@ -16,6 +16,8 @@ import { APIkey, coordinates } from "../../utils/constants.js";
 import { getItems, postItems, deleteCard } from "../../utils/api.js";
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext.js";
 
+
+import Register from "../Register/RegisterModal.jsx"
 function App() {
   const [isWeatherDataLoaded, setIsWeatherDataLoaded] = useState(false);
   const [weatherData, setWeatherData] = useState({
@@ -80,6 +82,9 @@ function App() {
       });
   };
 
+  const handleAddRegistration = () => {
+    setActiveModal("register");
+  };
   useEffect(() => {
     weatherApiData(coordinates, APIkey)
       .then((data) => {
@@ -119,6 +124,7 @@ function App() {
         <div className="page__content">
           <Header
             handleAddGarment={handleAddGarment}
+            onRegistration={handleAddRegistration}
             weatherData={weatherData}
           />
           <Routes>
@@ -164,6 +170,10 @@ function App() {
             isOpen={activeModal === "add garment"}
             setClothingItems={setClothingItems}
             onSubmitAddItemModal={handleSubmitAddItemModal}
+          />
+          <Register
+             onCloseModal={handleCloseModal}
+            isOpen={activeModal === "register"}
           />
         </div>
       </div>

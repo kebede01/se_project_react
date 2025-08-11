@@ -4,21 +4,13 @@ import avatar from "../../assets/myavatar.jpg";
 
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import { Link } from "react-router-dom";
-function Header({ handleAddGarment, weatherData }) {
+function Header({ handleAddGarment, weatherData , onRegistration}) {
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
     day: "numeric",
   });
 
-  const avatarName = "kebede tekle";
-  // Avatar name to title case
-  const toTitleCase = (str) => {
-    return str
-      .toLowerCase()
-      .split(" ")
-      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-      .join(" ");
-  };
+ 
   return (
     <header className="header">
       <Link to="/">
@@ -37,14 +29,13 @@ function Header({ handleAddGarment, weatherData }) {
       </button>
       {/* <div className="header__user-container"></div> */}
       <Link to="/profile" className="header__user-container__link">
-        <p className="header__avatar-name">
-          {avatarName ? toTitleCase(avatarName) : "User name"}
+        <p className="header__sign-up" onClick={onRegistration}>
+          Sign up
         </p>
-        <img
-          src={avatar}
-          alt={`image of ${avatarName}`}
-          className="header__avatar-img"
-        />
+       
+        <p className="header__sign-in">
+          Sign in
+        </p>
       </Link>
     </header>
   );
