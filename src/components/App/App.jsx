@@ -140,12 +140,15 @@ function App() {
       .catch(console.error);
   };
 
-  const handleEditProfile = (name, avatar) => {
+ 
+  const handleEditProfile = (name, avatar, ) => {
+   
     if (!name || !avatar) {
       return;
     }
+      const token = tokenValue.getToken();
     auth
-      .changeUserInfo(name, avatar)
+      .changeUserInfo(name, avatar, token)
       .then(() => {
         console.log("Profile Changed");
       })
@@ -190,6 +193,8 @@ function App() {
   const logOut = () => {
     tokenValue.removeToken();
     setIsLoggedIn(false);
+    setActiveModal("login");
+    console.log("You have logged out successfully");
   };
 
   useEffect(() => {

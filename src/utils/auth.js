@@ -46,23 +46,24 @@ export const getUserInfo = (token) => {
       // formatted value.
       Authorization: `Bearer ${token}`,
     },
+    
   }).then((res) => {
     return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
   });
 }
 
-export const changeUserInfo = (name, avatar) => {
-  // Send a GET request to /users/me
+export const changeUserInfo = (name, avatar, token) => {
+  
   return fetch(`${BASE_URL}/users/me`, {
     method: "PATCH",
-    headers: {
+       headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
-      body: JSON.stringify({
-        name,
-        avatar
-    })
+      // Specify an authorization header with an appropriately
+      // formatted value.
+      Authorization: `Bearer ${token}`,
     },
+ body: JSON.stringify({ name, avatar }),
   }).then((res) => {
     return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
   });
