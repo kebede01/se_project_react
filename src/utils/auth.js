@@ -52,7 +52,7 @@ export const getUserInfo = (token) => {
   });
 }
 
-export const changeUserInfo = (name, avatar, token) => {
+export const changeUserInfo = (name, avatarUrl, token) => {
   
   return fetch(`${BASE_URL}/users/me`, {
     method: "PATCH",
@@ -63,7 +63,7 @@ export const changeUserInfo = (name, avatar, token) => {
       // formatted value.
       Authorization: `Bearer ${token}`,
     },
- body: JSON.stringify({ name, avatar }),
+ body: JSON.stringify({ name, avatarUrl }),
   }).then((res) => {
     return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
   });

@@ -51,3 +51,8 @@
 .header__login{
   text-decoration: none;
 }
+.header__avatat-img{
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+}

@@ -1,7 +1,7 @@
 // Specify the BASE_URL for the API.
 export const BASE_URL = "http://localhost:3001";
- export const addCardLike = (id, token) => {
-  return fetch(`${BASE_URL}/items/:itemId/likes`, {
+ export const addCardLike = (itemId, token) => {
+  return fetch(`${BASE_URL}/items/${itemId}/likes`, {
     method: "PUT",
     headers: {
       Accept: "application/json",
@@ -12,7 +12,7 @@ export const BASE_URL = "http://localhost:3001";
     },
 
     body: JSON.stringify({
-      id,
+      itemId,
      
     }),
   }).then((res) => {
@@ -20,8 +20,8 @@ export const BASE_URL = "http://localhost:3001";
   });
 };
 
- export const removeCardLike = (id, token) => {
-  return fetch(`${BASE_URL}/items/:itemId/likes`, {
+ export const removeCardLike = (itemId, token) => {
+  return fetch(`${BASE_URL}/items/${itemId}/likes`, {
     method: "DELETE",
     headers: {
       Accept: "application/json",
@@ -32,7 +32,7 @@ export const BASE_URL = "http://localhost:3001";
     },
 
     body: JSON.stringify({
-      id,
+      itemId,
      
     }),
   }).then((res) => {

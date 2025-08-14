@@ -6,6 +6,7 @@ const ClothesSection = ({
   clothingItems,
   handleCardClick,
   handleAddGarment,
+    onCardLike
 }) => {
 
     const { currentUser } = useContext(CurrentUserContext)
@@ -26,13 +27,15 @@ const ClothesSection = ({
 
       <ul className="clothes__items">
         {clothingItems.map((item) => {
-          const isOwn = item.owner !== currentUser._id;
-        //  b/c i couldn't find one cloth, I used !== when it should be ===
+          const isOwn = item.owner === currentUser._id;
+          debugger;
           return isOwn ? (
             <ItemCard
               key={item._id}
               item={item}
               handleCardClick={handleCardClick}
+              onCardLike={onCardLike}
+             
             />
           ) : "";
           

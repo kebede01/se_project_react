@@ -20,7 +20,7 @@ import Register from "../RegisterModal/RegisterModal.jsx";
 import * as auth from "../../utils/auth.js";
 import LogIn from "../LoginModal/LoginModal.jsx";
 import * as tokenValue from "../../utils/token.js";
-// import * as api from "../../utils/apiForClothings.js";
+import * as apiForLikeDislike from "../../utils/apiForLikeDislike.js";
 import ProfileEditModal from "../ProfileEditModal/ProfileEditModal.jsx";
 
 function App() {
@@ -82,7 +82,7 @@ function App() {
     postItems(name, image, weatherType, token)
       .then((data) => {
         setClothingItems((prevValue) => {
-          return [...prevValue, data];
+          return [...prevValue, data.data];
         });
         console.log(clothingItems);
         handleCloseModal();
@@ -140,47 +140,46 @@ function App() {
       .catch(console.error);
   };
 
- 
-  const handleEditProfile = (name, avatar, ) => {
-   
-    if (!name || !avatar) {
+  const handleEditProfile = (name, avatarUrl) => {
+    if (!name || !avatarUrl) {
       return;
     }
-      const token = tokenValue.getToken();
+    const token = tokenValue.getToken();
     auth
-      .changeUserInfo(name, avatar, token)
+      .changeUserInfo(name, avatarUrl, token)
       .then(() => {
         console.log("Profile Changed");
       })
       .catch(console.error);
   };
 
-  // const handleCardLike = ({ id, isLiked }) => {
-  // const token = tokenValue.getToken();
-  // // Check if this card is not currently liked
-  // !isLiked
-  //   ? // if so, send a request to add the user's id to the card's likes array
-  //     api
-  //       // the first argument is the card's id
-  //       .addCardLike(id, token)
-  //       .then((updatedCard) => {
-  //         setClothingItems((cards) =>
-  //           cards.map((item) => (item._id === id ? updatedCard : item))
-  //         );
-  //       })
-  //       .catch((err) => console.log(err))
-  //   : // if not, send a request to remove the user's id from the card's likes array
-  //     api
-  //       // the first argument is the card's id
-  //       .removeCardLike(id, token)
-  //       .then((updatedCard) => {
-  //         setClothingItems((cards) =>
-  //           cards.map((item) => (item._id === id ? updatedCard : item))
-  //         );
-  //       })
-  //       .catch((err) => console.log(err));
-  // };
-  // // how to request for a particular cloth item;
+  // handle card like property of clothing items
+  const handleCardLike = ({ _id }, isLiked) => {
+    const token = tokenValue.getToken();
+    // Check if this card is not currently liked
+    !isLiked
+      ? // if so, send a request to add the user's id to the card's likes array
+        apiForLikeDislike
+          // the first argument is the card's id
+          .addCardLike(_id, token)
+          .then((updatedCard) => {
+            setClothingItems((cards) =>
+              cards.map((item) => (item._id === _id ? updatedCard.data : item))
+            );
+          })
+          .catch((err) => console.log(err))
+      : // if not, send a request to remove the user's id from the card's likes array
+        apiForLikeDislike
+          // the first argument is the card's id
+          .removeCardLike(_id, token)
+          .then((updatedCard) => {
+            setClothingItems((cards) =>
+              cards.map((item) => (item._id === _id ? updatedCard.data : item))
+            );
+          })
+          .catch((err) => console.log(err));
+  };
+  // how to request for a particular cloth item;
   // useEffect(() => {
   //    const token = tokenValue.getToken();
   //   getClothItem("689cddee74e082f4dd8bf16d", token)
@@ -266,6 +265,7 @@ function App() {
                     weatherData={weatherData}
                     handleCardClick={handleCardClick}
                     clothingItems={clothingItems}
+                    onCardLike={handleCardLike}
                   />
                 }
               />
@@ -279,6 +279,7 @@ function App() {
                     avatarName={currentUser.name}
                     handleAddEditProfileModal={handleAddEditProfileModal}
                     logOut={logOut}
+                    onCardLike={handleCardLike}
                   />
                 }
               />
@@ -318,7 +319,6 @@ function App() {
               handleAddLogIn={handleAddLogIn}
               openRegButton={openRegButton}
             />
-            
 
             <LogIn
               buttonText="Sign in"

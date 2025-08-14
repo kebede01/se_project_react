@@ -24,7 +24,8 @@
 }
 
 .side-bar__buttons{
-  
+  display: flex;
+  flex-direction: column;
 }
 .side-bar__button-change{
   margin-top: 16px;
