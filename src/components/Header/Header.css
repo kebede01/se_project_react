@@ -48,3 +48,6 @@
   justify-content: center;
   align-items: center;
 }
+.header__login{
+  text-decoration: none;
+}

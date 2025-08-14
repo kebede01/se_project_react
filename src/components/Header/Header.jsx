@@ -1,16 +1,19 @@
 import "./Header.css";
 import logo from "../../assets/logo.svg";
-import avatar from "../../assets/myavatar.jpg";
+// import avatar from "../../assets/myavatar.jpg";
 
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import { Link } from "react-router-dom";
-function Header({ handleAddGarment, weatherData , onRegistration}) {
+import CurrentUserContext from "../../contexts/CurrentUserContext";
+import { useContext } from "react";
+
+function Header({ handleAddGarment, weatherData , onRegistration, onAddLogIn}) {
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
     day: "numeric",
   });
 
- 
+  const { currentUser, isLoggedIn} = useContext(CurrentUserContext);
   return (
     <header className="header">
       <Link to="/">
@@ -28,15 +31,23 @@ function Header({ handleAddGarment, weatherData , onRegistration}) {
         + Add clothes
       </button>
       {/* <div className="header__user-container"></div> */}
-      <Link to="/profile" className="header__user-container__link">
-        <p className="header__sign-up" onClick={onRegistration}>
-          Sign up
-        </p>
+     
+      {isLoggedIn ? ( <Link  to="/profile" className="header__user-container__link">
+        <p className="header__avatar-name">{currentUser.name}</p>
+        <img src={ currentUser.avatar} alt="avatar" className="header__avatar-img" />
        
-        <p className="header__sign-in">
+        
+      </Link>) : ( <div  className="header__user-container__link">
+        <button className="header__sign-up" onClick={onRegistration}>
+          Sign up
+        </button>
+          <div  className="header__login">
+            <button className="header__sign-in" onClick={onAddLogIn}>
           Sign in
-        </p>
-      </Link>
+        </button>
+          </div>
+        
+      </div>)}
     </header>
   );
 }

@@ -3,14 +3,18 @@ import "./AddItemModal.css";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
 const AddItemModal = ({
-  // activeModal,
+ 
+  buttonText,
+  title,
   onCloseModal,
   isOpen,
+  openAddItemButton,
   onSubmitAddItemModal,
 }) => {
   const [name, setName] = useState("");
   const [image, setImage] = useState("");
   const [weatherType, setWeatherType] = useState("");
+
   const handleNameInput = (e) => {
     setName(e.target.value);
   };
@@ -31,12 +35,12 @@ const AddItemModal = ({
 
   return (
     <ModalWithForm
-      buttonText="Add garment"
-      title="New garment"
-      // activeModal={activeModal}
+      buttonText={buttonText}
+      title={title}
+      openAddItemButton={openAddItemButton}
       onCloseModal={onCloseModal}
       isOpen={isOpen}
-      onSubmitModal={handleSubmitModal}
+      onItemSubmitModal={handleSubmitModal}
     >
       <label htmlFor="name" className="modal__label">
         Name

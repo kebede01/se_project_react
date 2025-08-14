@@ -1,4 +1,9 @@
-.side-bar {
+.side-bar{
+  display: flex;
+  flex-direction: column;
+  
+}
+.side-bar__header {
   display: flex;
   gap: 16px;
 }
@@ -16,4 +21,31 @@
   color: #000000;
   width: 157px;
   text-transform: capitalize;
+}
+
+.side-bar__buttons{
+  
+}
+.side-bar__button-change{
+  margin-top: 16px;
+  margin-bottom: 16px;
+   font-family: Cabinet Grotesk;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  color: #000000;
+  border: none;
+  background-color: none;
+}
+
+.side-bar__button-logout{
+  font-family: Cabinet Grotesk;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  color: #000000;
+   border: none;
+  background-color: none;
 }

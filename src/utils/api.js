@@ -8,11 +8,16 @@ const getItems = () => {
   return fetch(`${baseUrl}/items`).then(checkResponse);
 };
 
-const postItems = (name, image, weatherType) => {
+const postItems = (name, image, weatherType, token) => {
+//use localStorage.getToken() in app.jsx  to get token just before calling this function
   return fetch(`${baseUrl}/items`, {
     method: "POST",
-    headers: {
+      headers: {
+      Accept: "application/json",
       "Content-Type": "application/json",
+      // Specify an authorization header with an appropriately
+      // formatted value.
+      Authorization: `Bearer ${token}`,
     },
 
     body: JSON.stringify({
@@ -23,13 +28,33 @@ const postItems = (name, image, weatherType) => {
   }).then(checkResponse);
 };
 
-const deleteCard = (selectedCard) => {
+ const getClothItem = (itemId, token) => {
+   //use localStorage.getToken() in app.jsx  to get token just before calling this function
+  return fetch(`${baseUrl}/items/${itemId}`, {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      // Specify an authorization header with an appropriately
+      // formatted value.
+      Authorization: `Bearer ${token}`,
+    },
+
+   
+  }).then(checkResponse);
+};
+
+const deleteCard = (selectedCard, token) => {
   return fetch(`${baseUrl}/items/${selectedCard._id}`, {
     method: "DELETE",
-    headers: {
+      headers: {
+      Accept: "application/json",
       "Content-Type": "application/json",
+      // Specify an authorization header with an appropriately
+      // formatted value.
+      Authorization: `Bearer ${token}`,
     },
   }).then(checkResponse);
 };
 
-export { getItems, postItems, deleteCard};
+export { getItems, postItems, deleteCard, getClothItem};
