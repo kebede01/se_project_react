@@ -64,7 +64,7 @@ const LogIn = ({
         Password
         <input
           type="password"
-          id=" password"
+          id="password"
           className="modal__input"
           name="password"
           value={password}

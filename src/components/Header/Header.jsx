@@ -1,6 +1,5 @@
 import "./Header.css";
 import logo from "../../assets/logo.svg";
-// import avatar from "../../assets/myavatar.jpg";
 
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import { Link } from "react-router-dom";
@@ -24,6 +23,7 @@ function Header({ handleAddGarment, weatherData, onRegistration, onAddLogIn }) {
       </p>
       <ToggleSwitch />
       <button
+        disabled={isLoggedIn ? false : true}
         type="button"
         className="header__button"
         onClick={handleAddGarment}

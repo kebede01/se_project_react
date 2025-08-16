@@ -38,5 +38,3 @@ export const removeCardLike = (itemId, token) => {
     }),
   }).then(checkResponse);
 };
-
-

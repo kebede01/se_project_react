@@ -74,6 +74,7 @@
   background-position: center;
   background-repeat: no-repeat;
   opacity: 0.4;
+  cursor: pointer;
 }
 .card__like-button:hover {
   transition: 1.3s;

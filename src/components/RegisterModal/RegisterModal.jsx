@@ -38,7 +38,7 @@ const Register = ({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onRegistration(name, password, email, avatarUrl);
+    onRegistration(name, avatarUrl, email, password);
     onCloseModal();
     setAvatarUrl("");
     setEmail("");
@@ -87,7 +87,7 @@ const Register = ({
           onChange={handlePassword}
         />
       </label>
-      <label htmlFor="Name" className="modal__label ">
+      <label htmlFor="name" className="modal__label ">
         Name
         <input
           type="text"

@@ -3,11 +3,8 @@ import { useContext, useState, useEffect } from "react";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 function ItemCard({ item, handleCardClick, onCardLike }) {
   const [isLiked, setIsLiked] = useState(false);
-  const { currentUser } = useContext(CurrentUserContext);
+  const { currentUser, isLoggedIn } = useContext(CurrentUserContext);
   // we need to create a variable to keep track of whether a card is liked or not
-  // const [alreadyLiked, setAlreadyLiked] = useState(isLiked);
-  // how can we know whether a card is or is not liked?
-  // we can tell if a card is liked by whether or not the currently logged in user's id is within the likes array
 
   const handleCallBack = () => {
     handleCardClick(item);
@@ -33,6 +30,7 @@ function ItemCard({ item, handleCardClick, onCardLike }) {
       <div className="card__header">
         <h2 className="card__name">{item.name}</h2>
         <button
+          disabled={isLoggedIn ? false : true}
           type="button"
           className={itemLikeButtonClassName}
           onClick={handleClick}

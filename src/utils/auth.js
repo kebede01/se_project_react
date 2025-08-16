@@ -8,17 +8,16 @@ export function checkResponse(res) {
 }
 // The register function accepts the necessary data as arguments,
 // and sends a POST request to the given endpoint.
-export const register = (name, password, email, avatarUrl) => {
+export const register = (name, avatarUrl, email, password) => {
   return fetch(`${BASE_URL}/signup`, {
     method: "POST",
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ name, password, email, avatarUrl }),
+    body: JSON.stringify({ name, avatar: avatarUrl, email, password }),
   }).then(checkResponse);
 };
-
 
 export const authorize = (email, password) => {
   return fetch(`${BASE_URL}/signin`, {
@@ -28,9 +27,7 @@ export const authorize = (email, password) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ email, password }),
-  })
-    .then(checkResponse)
-    
+  }).then(checkResponse);
 };
 
 // getContent accepts the token as an argument.
@@ -58,6 +55,6 @@ export const changeUserInfo = (name, avatarUrl, token) => {
       // formatted value.
       Authorization: `Bearer ${token}`,
     },
-    body: JSON.stringify({ name, avatarUrl }),
+    body: JSON.stringify({ name, avatar: avatarUrl }),
   }).then(checkResponse);
 };

@@ -6,7 +6,7 @@
 .modal__content_type-image {
   width: 100%;
   max-width: 498px;
-  /* padding: 0px 0px 32px 0px; */
+
   display: flex;
   flex-direction: column;
   position: relative;
@@ -33,6 +33,7 @@
   opacity: 1;
   background-image: url("../../assets//close-icon-white.png");
   background-repeat: no-repeat;
+  cursor: pointer;
 }
 
 .modal__close-btn_type-preview:hover {
@@ -72,6 +73,7 @@
   background-color: transparent;
   color: #ff4d00;
   margin: 20px 28px 12px auto;
+  cursor: pointer;
 }
 .modal__button-delete_hidden {
   visibility: hidden;

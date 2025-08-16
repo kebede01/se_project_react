@@ -5,15 +5,15 @@ import { Routes, Route, useNavigate } from "react-router-dom";
 import "./App.css";
 import { Header } from "../Header/Header";
 import Main from "../Main/Main";
-import Footer from "../Footer/Footer.jsx";
+import Footer from "../Footer/Footer";
 import Profile from "../Profile/Profile";
-import AddItemModal from "../AddItemModal/AddItemModal.jsx";
+import AddItemModal from "../AddItemModal/AddItemModal";
 import ItemModal from "../ItemModal/ItemModal";
-import Delete from "../Delete/Delete.jsx";
-import Register from "../RegisterModal/RegisterModal.jsx";
-import ProfileEditModal from "../ProfileEditModal/ProfileEditModal.jsx";
-import LogIn from "../LoginModal/LoginModal.jsx";
-import ProtectedRoute from "../ProtectedRoute/ProtectedRoute.jsx";
+import Delete from "../Delete/Delete";
+import Register from "../RegisterModal/RegisterModal";
+import ProfileEditModal from "../ProfileEditModal/ProfileEditModal";
+import LogIn from "../LoginModal/LoginModal";
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 // Utility/helper function imports
 import { filterWeatherData, weatherApiData } from "../../utils/WeatherApi.js";
 import { APIkey, coordinates } from "../../utils/constants.js";
@@ -122,10 +122,10 @@ function App() {
       });
   };
   //The following takes data from the 'SIGN UP' process i.e RegisterModal
-  const handleRegistration = (name, password, email, avatarUrl) => {
+  const handleRegistration = (name, avatarUrl, email, password) => {
     //fetch to 'POST' to the server and populate our User collection
     auth
-      .register(name, password, email, avatarUrl)
+      .register(name, avatarUrl, email, password)
       .then(() => {
         console.log("Yes registered");
       })
@@ -153,6 +153,7 @@ function App() {
       .catch(console.error);
   };
   //This helps edit our user profile
+
   const handleEditProfile = (name, avatarUrl) => {
     if (!name || !avatarUrl) {
       return;
@@ -162,7 +163,10 @@ function App() {
     auth
       .changeUserInfo(name, avatarUrl, token)
       .then(() => {
-        console.log("Profile Changed");
+        // now we immediately update current user info;
+        auth.getUserInfo(token).then((data) => {
+          setCurrentUser(data.data);
+        });
       })
       .catch(console.error);
   };

@@ -35,6 +35,7 @@
   line-height: 100%;
   letter-spacing: 0%;
   text-align: left;
+  cursor: pointer;
 }
 .side-bar__button-change {
   margin-top: 16px;
@@ -47,6 +48,7 @@
   color: #000000;
   border: none;
   background-color: none;
+  cursor: pointer;
 }
 
 .side-bar__button-logout {
@@ -58,4 +60,5 @@
   color: #000000;
   border: none;
   background-color: none;
+  cursor: pointer;
 }

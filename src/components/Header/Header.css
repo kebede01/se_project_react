@@ -43,6 +43,7 @@
   line-height: 24px;
   letter-spacing: 0%;
   border: none;
+  cursor: pointer;
 }
 .header__sign-in {
   margin-left: 12px;
@@ -55,6 +56,7 @@
   font-size: 20px;
   letter-spacing: 0%;
   border: none;
+  cursor: pointer;
 }
 .header__user-container__link {
   text-decoration: none;
@@ -67,6 +69,7 @@
 }
 .header__login {
   text-decoration: none;
+  cursor: pointer;
 }
 .header__avatar-img {
   width: 56px;

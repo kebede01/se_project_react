@@ -23,9 +23,8 @@ const ClothesSection = ({
         {clothingItems.map((item) => {
           // Checking if the current user is the owner of the current clothing item
           const isOwn = item.owner === currentUser._id;
-         
+
           return isOwn ? (
-             
             <ItemCard
               key={item._id}
               item={item}
