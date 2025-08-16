@@ -4,9 +4,20 @@ import { useState } from "react";
 import "./LoginModal.css";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
-const LogIn = ({ onCloseModal,  buttonText, title, isOpen, onLogIn, activeModal, handleAddRegistration, openLogInButton}) => {
+const LogIn = ({
+  onCloseModal,
+  buttonText,
+  title,
+  isOpen,
+  onLogIn,
+  activeModal,
+  handleAddRegistration,
+  openLogInModal,
+}) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  //The following 'boolean' is to control button color
+  const isFilled = email && password !== "";
 
   const handleEmail = (e) => {
     setEmail(e.target.value);
@@ -18,7 +29,7 @@ const LogIn = ({ onCloseModal,  buttonText, title, isOpen, onLogIn, activeModal,
 
   const handleSubmit = (e) => {
     e.preventDefault();
-   onLogIn(email, password)
+    onLogIn(email, password);
     onCloseModal();
     setEmail("");
     setPassword("");
@@ -33,7 +44,8 @@ const LogIn = ({ onCloseModal,  buttonText, title, isOpen, onLogIn, activeModal,
       onSubmitLogIn={handleSubmit}
       activeModal={activeModal}
       handleAddRegistration={handleAddRegistration}
-      openLogInButton={openLogInButton}
+      openLogInModal={openLogInModal}
+      isFilled={isFilled}
     >
       <label htmlFor="email" className="modal__label">
         Email

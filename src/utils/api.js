@@ -9,10 +9,10 @@ const getItems = () => {
 };
 
 const postItems = (name, image, weatherType, token) => {
-//use localStorage.getToken() in app.jsx  to get token just before calling this function
+  //use localStorage.getToken() in app.jsx  to get token just before calling this function
   return fetch(`${baseUrl}/items`, {
     method: "POST",
-      headers: {
+    headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
       // Specify an authorization header with an appropriately
@@ -28,8 +28,8 @@ const postItems = (name, image, weatherType, token) => {
   }).then(checkResponse);
 };
 
- const getClothItem = (itemId, token) => {
-   //use localStorage.getToken() in app.jsx  to get token just before calling this function
+const getClothItem = (itemId, token) => {
+  //use localStorage.getToken() in app.jsx  to get token just before calling this function
   return fetch(`${baseUrl}/items/${itemId}`, {
     method: "GET",
     headers: {
@@ -39,15 +39,13 @@ const postItems = (name, image, weatherType, token) => {
       // formatted value.
       Authorization: `Bearer ${token}`,
     },
-
-   
   }).then(checkResponse);
 };
 
 const deleteCard = (selectedCard, token) => {
   return fetch(`${baseUrl}/items/${selectedCard._id}`, {
     method: "DELETE",
-      headers: {
+    headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
       // Specify an authorization header with an appropriately
@@ -57,4 +55,4 @@ const deleteCard = (selectedCard, token) => {
   }).then(checkResponse);
 };
 
-export { getItems, postItems, deleteCard, getClothItem};
+export { getItems, postItems, deleteCard, getClothItem };

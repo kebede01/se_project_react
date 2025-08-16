@@ -18,18 +18,26 @@
   border: 1px solid #0000004d;
   border-radius: 20px;
 }
-
+.card__header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  position: absolute;
+  top: 15px;
+}
 .card__name {
   margin: 0;
+
   font-size: 16px;
   line-height: 20px;
   padding: 2px 12px;
   background: #ffffff;
   border-radius: 4px;
   color: #00000099;
-  position: absolute;
-  top: 15px;
-  align-items: center;
+  /* position: absolute; */
+  /* top: 15px; */
+  /* align-items: center; */
 }
 
 .card__img {
@@ -46,6 +54,7 @@
   align-items: center;
   gap: 20px;
 }
+
 .cards__text {
   font-size: 20px;
   line-height: 100%;
@@ -54,7 +63,7 @@
 }
 
 .card__like-button {
-  /* background-image: url("../images/union.svg"); */
+  background-image: url("../../assets/union.svg");
   background-color: transparent;
   padding: 0;
   border: none;
@@ -65,22 +74,27 @@
   background-position: center;
   background-repeat: no-repeat;
   opacity: 0.4;
-  position: absolute;
-  top: 15px;
-  right: 40px;
 }
 .card__like-button:hover {
   transition: 1.3s;
   opacity: 1;
 }
 .card__like-button_liked {
-  /* background-image: url("../images/liked.svg"); */
+  background-image: url("../../assets/liked.svg");
 
-  background-size: cover;
+  background-color: transparent;
+  padding: 0;
+  border: none;
+  width: 20px;
+  height: 18px;
+  cursor: pointer;
+  background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
+  opacity: 0.4;
   opacity: 1;
 }
+
 .card__like-button_liked:hover {
   opacity: 0.4;
 }

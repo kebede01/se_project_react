@@ -1,6 +1,6 @@
 // External library imports
 import { useState, useEffect } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 // Internal component imports
 import "./App.css";
 import { Header } from "../Header/Header";
@@ -10,18 +10,19 @@ import Profile from "../Profile/Profile";
 import AddItemModal from "../AddItemModal/AddItemModal.jsx";
 import ItemModal from "../ItemModal/ItemModal";
 import Delete from "../Delete/Delete.jsx";
+import Register from "../RegisterModal/RegisterModal.jsx";
+import ProfileEditModal from "../ProfileEditModal/ProfileEditModal.jsx";
+import LogIn from "../LoginModal/LoginModal.jsx";
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute.jsx";
 // Utility/helper function imports
 import { filterWeatherData, weatherApiData } from "../../utils/WeatherApi.js";
 import { APIkey, coordinates } from "../../utils/constants.js";
 import { getItems, postItems, deleteCard } from "../../utils/api.js";
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext.js";
 import CurrentUserContext from "../../contexts/CurrentUserContext.js";
-import Register from "../RegisterModal/RegisterModal.jsx";
 import * as auth from "../../utils/auth.js";
-import LogIn from "../LoginModal/LoginModal.jsx";
 import * as tokenValue from "../../utils/token.js";
 import * as apiForLikeDislike from "../../utils/apiForLikeDislike.js";
-import ProfileEditModal from "../ProfileEditModal/ProfileEditModal.jsx";
 
 function App() {
   const [isWeatherDataLoaded, setIsWeatherDataLoaded] = useState(false);
@@ -44,21 +45,14 @@ function App() {
     name: "kebede ",
     email: "example@gmail.com",
   });
-
-  const openLogInButton = activeModal === "login";
-  const openRegButton = activeModal === "register";
+  // The following four help toggle button type in 'ModalWithForm' component
+  const openLogInModal = activeModal === "login";
+  const openRegistrationModal = activeModal === "register";
   const openAddItemButton = activeModal === "add garment";
   const openEditProfileButton = activeModal === "edit profile";
-
+  // The following functions help switch modal type
   const handleAddGarment = () => {
     setActiveModal("add garment");
-  };
-  const handleCloseModal = () => {
-    setActiveModal();
-  };
-  const handleCardClick = (card) => {
-    setActiveModal("preview");
-    setSelectedCard(card);
   };
 
   const handleAddEditProfileModal = () => {
@@ -72,19 +66,30 @@ function App() {
   const handleAddLogIn = () => {
     setActiveModal("login");
   };
+  const handleCloseModal = () => {
+    setActiveModal();
+  };
+  // This function switches modal type and takes the card data at the same time
+  const handleCardClick = (card) => {
+    setActiveModal("preview");
+    setSelectedCard(card);
+  };
 
+  //This switches temperature unit through out the components.
   const handleToggleSwitchChange = () => {
     setCurrentTemperatureUnit(currentTemperatureUnit === "F" ? "C" : "F");
   };
 
+  //This adds clothing item, taking data from the 'AddItemModal'
   const handleSubmitAddItemModal = (name, image, weatherType) => {
     const token = tokenValue.getToken();
+    //POST request to the server to populate the database.It requires authorization 'token'
     postItems(name, image, weatherType, token)
-      .then((data) => {
+      .then((res) => {
         setClothingItems((prevValue) => {
-          return [...prevValue, data.data];
+          return [...prevValue, res.data];
         });
-        console.log(clothingItems);
+
         handleCloseModal();
       })
       .catch((error) => {
@@ -92,15 +97,18 @@ function App() {
       });
   };
 
+  // This takes to another modal after clicking the "delete" button in "ItemModal";
   const handleItemModalDeletButton = () => {
     setActiveModal("delete");
     setSelectedCard(selectedCard);
   };
-
+  //This deletes clothing item, taking item-data from the modal
   const handleDeleteModalDeletButton = (selectedCard) => {
-    // fetch to delete the clothing item on the server
-    deleteCard(selectedCard)
+    const token = tokenValue.getToken();
+    // fetch to 'DELETE' the clothing item on the server.It requires authorization token
+    deleteCard(selectedCard, token)
       .then(() => {
+        //Removing the deleted item from our clothing collection
         setClothingItems(
           clothingItems.filter((item) => {
             return item._id !== selectedCard._id;
@@ -108,12 +116,14 @@ function App() {
         );
         handleCloseModal();
       })
+
       .catch((error) => {
         console.error("Error:", error);
       });
   };
-
+  //The following takes data from the 'SIGN UP' process i.e RegisterModal
   const handleRegistration = (name, password, email, avatarUrl) => {
+    //fetch to 'POST' to the server and populate our User collection
     auth
       .register(name, password, email, avatarUrl)
       .then(() => {
@@ -121,30 +131,34 @@ function App() {
       })
       .catch(console.error);
   };
-
+  //The following takes data from the 'SIGN IN' process i.e LoginModal
+  const navigate = useNavigate();
   const handleLogIn = (email, password) => {
     if (!email || !password) {
       return;
     }
+    //fetch to 'POST' to the server and we receive token along with user data
     auth
       .authorize(email, password)
-
       .then((data) => {
-        tokenValue.setToken(data.token);
-        setIsLoggedIn(true);
+        tokenValue.setToken(data.token); //storing token in localStorage
 
-        setCurrentUser(data.data);
-        console.log(currentUser);
+        return auth.getUserInfo(data.token).then((userData) => {
+          setIsLoggedIn(true);
+
+          setCurrentUser(userData.data);
+          navigate("/");
+        });
       })
-
       .catch(console.error);
   };
-
+  //This helps edit our user profile
   const handleEditProfile = (name, avatarUrl) => {
     if (!name || !avatarUrl) {
       return;
     }
     const token = tokenValue.getToken();
+    //fetch to 'PATCH' request to the server.It requires token authorization
     auth
       .changeUserInfo(name, avatarUrl, token)
       .then(() => {
@@ -153,24 +167,26 @@ function App() {
       .catch(console.error);
   };
 
-  // handle card like property of clothing items
+  // handle item card 'like' button
   const handleCardLike = ({ _id }, isLiked) => {
     const token = tokenValue.getToken();
     // Check if this card is not currently liked
     !isLiked
       ? // if so, send a request to add the user's id to the card's likes array
         apiForLikeDislike
-          // the first argument is the card's id
+          //fetch to 'PUT' request to the server.It requires token authorization
           .addCardLike(_id, token)
           .then((updatedCard) => {
-            setClothingItems((cards) =>
-              cards.map((item) => (item._id === _id ? updatedCard.data : item))
+            setClothingItems((prevValue) =>
+              prevValue.map((item) =>
+                item._id === _id ? updatedCard.data : item
+              )
             );
           })
           .catch((err) => console.log(err))
       : // if not, send a request to remove the user's id from the card's likes array
         apiForLikeDislike
-          // the first argument is the card's id
+          //fetch to 'DELETE' request to the server.It requires token authorization
           .removeCardLike(_id, token)
           .then((updatedCard) => {
             setClothingItems((cards) =>
@@ -179,21 +195,12 @@ function App() {
           })
           .catch((err) => console.log(err));
   };
-  // how to request for a particular cloth item;
-  // useEffect(() => {
-  //    const token = tokenValue.getToken();
-  //   getClothItem("689cddee74e082f4dd8bf16d", token)
-  //     .then((data) => {
-  //       console.log(`The clothItem is : ${JSON.stringify(data)}`);
-  //   })
-  // })
 
   // function to logout
   const logOut = () => {
-    tokenValue.removeToken();
+    tokenValue.removeToken(); //removes token from the browser localStorage
     setIsLoggedIn(false);
-    setActiveModal("login");
-    console.log("You have logged out successfully");
+    navigate("/");
   };
 
   useEffect(() => {
@@ -239,7 +246,6 @@ function App() {
       .then((data) => {
         setIsLoggedIn(true);
         setCurrentUser(data.data);
-        console.log(currentUser);
       })
       .catch(console.error);
   }, []);
@@ -253,8 +259,8 @@ function App() {
           <div className="page__content">
             <Header
               handleAddGarment={handleAddGarment}
-              onAddLogIn={handleAddLogIn}
-              onRegistration={handleAddRegistration}
+              onAddLogIn={handleAddLogIn} //changes active modal type
+              onRegistration={handleAddRegistration} //changes active modal type
               weatherData={weatherData}
             />
             <Routes>
@@ -272,15 +278,17 @@ function App() {
               <Route
                 path="/profile"
                 element={
-                  <Profile
-                    handleCardClick={handleCardClick}
-                    clothingItems={clothingItems}
-                    handleAddGarment={handleAddGarment}
-                    avatarName={currentUser.name}
-                    handleAddEditProfileModal={handleAddEditProfileModal}
-                    logOut={logOut}
-                    onCardLike={handleCardLike}
-                  />
+                  <ProtectedRoute>
+                    <Profile
+                      handleCardClick={handleCardClick}
+                      clothingItems={clothingItems}
+                      handleAddGarment={handleAddGarment}
+                      avatarName={currentUser.name}
+                      handleAddEditProfileModal={handleAddEditProfileModal}
+                      logOut={logOut}
+                      onCardLike={handleCardLike}
+                    />
+                  </ProtectedRoute>
                 }
               />
             </Routes>
@@ -314,27 +322,26 @@ function App() {
               title="Register"
               onCloseModal={handleCloseModal}
               isOpen={activeModal === "register"}
-              onRegistration={handleRegistration}
+              onRegistration={handleRegistration} //handles four input values on registration submit
               activeModal={activeModal}
-              handleAddLogIn={handleAddLogIn}
-              openRegButton={openRegButton}
+              handleAddLogIn={handleAddLogIn} //changes active modal type
+              openRegistrationModal={openRegistrationModal}
             />
 
             <LogIn
-              buttonText="Sign in"
+              buttonText="Log in"
               title="Login"
               onCloseModal={handleCloseModal}
               isOpen={activeModal === "login"}
               onLogIn={handleLogIn}
               activeModal={activeModal}
-              handleAddRegistration={handleAddRegistration}
-              openLogInButton={openLogInButton}
+              handleAddRegistration={handleAddRegistration} //changes active modal type
+              openLogInModal={openLogInModal}
             />
             <ProfileEditModal
-              buttonText="Edit profile"
+              buttonText="Save changes"
               title="Edit profile"
               onCloseModal={handleCloseModal}
-              // isOpen={activeModal === "edit profile"}
               isOpen={openEditProfileButton}
               onSubmitEditModal={handleEditProfile}
               openEditProfileButton={openEditProfileButton}

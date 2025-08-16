@@ -6,18 +6,16 @@ const Profile = ({
   clothingItems,
   handleAddGarment,
   handleAddEditProfileModal,
-  avatarName,
+
   logOut,
-  onCardLike
+  onCardLike,
 }) => {
   return (
     <section className="profile">
       <SideBar
         handleAddEditProfileModal={handleAddEditProfileModal}
-        avatarName={avatarName}
         className="profile__side-bar"
         logOut={logOut}
-        
       />
 
       <ClothesSection

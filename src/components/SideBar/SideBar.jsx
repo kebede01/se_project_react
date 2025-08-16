@@ -1,22 +1,24 @@
 import "./SideBar.css";
-import avatarImg from "../../assets/myavatar.jpg";
+import { useContext } from "react";
 // import { Link } from "react-router-dom";
-const SideBar = ({ handleAddEditProfileModal, avatarName, logOut }) => {
+import CurrentUserContext from "../../contexts/CurrentUserContext";
+const SideBar = ({ handleAddEditProfileModal, logOut }) => {
+  const { currentUser } = useContext(CurrentUserContext);
   return (
     <section className="side-bar">
       <div className="side-bar__header">
         <img
-          src={avatarImg}
-          alt={`image of ${avatarName}`}
+          src={currentUser.avatarUrl}
+          alt={`image of ${currentUser.name}`}
           className="side-bar__avatar"
         />
 
-        <p className="side-bar__avatar-name">{avatarName}</p>
+        <p className="side-bar__avatar-name">{currentUser.name}</p>
       </div>
       <div className="side-bar__buttons">
         <button
           type="button"
-          className="side-bar__button-change"
+          className="side-bar__button-change side-bar__button"
           onClick={handleAddEditProfileModal}
         >
           Change profile data
@@ -24,7 +26,7 @@ const SideBar = ({ handleAddEditProfileModal, avatarName, logOut }) => {
 
         <button
           type="button"
-          className="side-bar__button-logout"
+          className="side-bar__button-logout side-bar__button"
           onClick={logOut}
         >
           Log out

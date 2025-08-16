@@ -7,13 +7,13 @@ import { Link } from "react-router-dom";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import { useContext } from "react";
 
-function Header({ handleAddGarment, weatherData , onRegistration, onAddLogIn}) {
+function Header({ handleAddGarment, weatherData, onRegistration, onAddLogIn }) {
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
     day: "numeric",
   });
 
-  const { currentUser, isLoggedIn} = useContext(CurrentUserContext);
+  const { currentUser, isLoggedIn } = useContext(CurrentUserContext);
   return (
     <header className="header">
       <Link to="/">
@@ -31,23 +31,28 @@ function Header({ handleAddGarment, weatherData , onRegistration, onAddLogIn}) {
         + Add clothes
       </button>
       {/* <div className="header__user-container"></div> */}
-     
-      {isLoggedIn ? ( <Link  to="/profile" className="header__user-container__link">
-        <p className="header__avatar-name">{currentUser.name}</p>
-        <img src={ currentUser.avatar} alt="avatar" className="header__avatar-img" />
-       
-        
-      </Link>) : ( <div  className="header__user-container__link">
-        <button className="header__sign-up" onClick={onRegistration}>
-          Sign up
-        </button>
-          <div  className="header__login">
+
+      {isLoggedIn ? (
+        <Link to="/profile" className="header__user-container__link">
+          <p className="header__avatar-name">{currentUser.name}</p>
+          <img
+            src={currentUser?.avatarUrl}
+            alt={`image of ${currentUser.name}`}
+            className="header__avatar-img"
+          />
+        </Link>
+      ) : (
+        <div className="header__user-container__link">
+          <button className="header__sign-up" onClick={onRegistration}>
+            Sign up
+          </button>
+          <div className="header__login">
             <button className="header__sign-in" onClick={onAddLogIn}>
-          Sign in
-        </button>
+              Sign in
+            </button>
           </div>
-        
-      </div>)}
+        </div>
+      )}
     </header>
   );
 }

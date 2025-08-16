@@ -23,7 +23,12 @@
   padding: 0;
   border: none;
   background: transparent;
-  color: #00000099;
+  font-family: Cabinet Grotesk;
+  font-weight: 700;
+  font-style: Bold;
+  font-size: 20px;
+  line-height: 100%;
+  letter-spacing: 0%;
 }
 .clothes__items {
   display: flex;

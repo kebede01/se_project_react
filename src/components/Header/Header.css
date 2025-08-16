@@ -21,6 +21,11 @@
   cursor: pointer;
   line-height: 24px;
   border: none;
+  font-family: Cabinet Grotesk;
+  font-weight: 700;
+  font-style: Bold;
+  font-size: 20px;
+  letter-spacing: 0%;
 }
 
 .header__user-container {
@@ -29,15 +34,27 @@
 }
 .header__sign-up {
   margin: 0 0 0 20px;
-  line-height: 100%;
   color: black;
   text-transform: capitalize;
+  font-family: Cabinet Grotesk;
+  font-weight: 700;
+  font-style: Bold;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: 0%;
+  border: none;
 }
 .header__sign-in {
   margin-left: 12px;
   line-height: 100%;
   color: black;
   text-transform: capitalize;
+  font-family: Cabinet Grotesk;
+  font-weight: 700;
+  font-style: Bold;
+  font-size: 20px;
+  letter-spacing: 0%;
+  border: none;
 }
 .header__user-container__link {
   text-decoration: none;
@@ -48,11 +65,11 @@
   justify-content: center;
   align-items: center;
 }
-.header__login{
+.header__login {
   text-decoration: none;
 }
-.header__avatat-img{
-    width: 56px;
-    height: 56px;
-    border-radius: 50%;
+.header__avatar-img {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
 }

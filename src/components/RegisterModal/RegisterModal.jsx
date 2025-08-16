@@ -3,30 +3,38 @@ import { useState } from "react";
 
 import "./RegisterModal.css";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
-const Register = ({  onCloseModal, isOpen,  onRegistration, buttonText, title, activeModal, handleAddLogIn, openRegButton}) => {
+const Register = ({
+  onCloseModal,
+  isOpen,
+  onRegistration,
+  buttonText,
+  title,
+  activeModal,
+  handleAddLogIn,
+  openRegistrationModal,
+}) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [avatarUrl, setAvatarUrl] = useState("");
- 
+  //The following 'boolean' is to control button color
+  const isFilled = email && name && password && avatarUrl !== "";
+
   const handleName = (e) => {
-   setName(e.target.value)
+    setName(e.target.value);
   };
 
   const handleEmail = (e) => {
-   setEmail(e.target.value)
+    setEmail(e.target.value);
   };
 
   const handlePassword = (e) => {
-     setPassword(e.target.value)
-  
+    setPassword(e.target.value);
   };
 
-   const handleAvatarUrl= (e) => {
-    setAvatarUrl(e.target.value)
+  const handleAvatarUrl = (e) => {
+    setAvatarUrl(e.target.value);
   };
-
-
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -36,6 +44,7 @@ const Register = ({  onCloseModal, isOpen,  onRegistration, buttonText, title, a
     setEmail("");
     setName("");
     setPassword("");
+    handleAddLogIn();
   };
 
   return (
@@ -44,17 +53,17 @@ const Register = ({  onCloseModal, isOpen,  onRegistration, buttonText, title, a
       title={title}
       onCloseModal={onCloseModal}
       isOpen={isOpen}
-      onSubmitModal={handleSubmit}
+      onSubmitRegistration={handleSubmit}
       activeModal={activeModal}
       handleAddLogIn={handleAddLogIn}
-      openRegButton={openRegButton}
+      openRegistrationModal={openRegistrationModal}
+      isFilled={isFilled}
     >
       <label htmlFor="email" className="modal__label">
         Email
         <input
           id="email"
           type="email"
-          
           className="modal__input"
           placeholder="Email"
           required
@@ -75,13 +84,10 @@ const Register = ({  onCloseModal, isOpen,  onRegistration, buttonText, title, a
           value={password}
           required
           autoComplete="current-password"
-        onChange={handlePassword}
+          onChange={handlePassword}
         />
       </label>
-      <label
-        htmlFor="Name"
-        className="modal__label "
-      >
+      <label htmlFor="Name" className="modal__label ">
         Name
         <input
           type="text"
@@ -95,23 +101,18 @@ const Register = ({  onCloseModal, isOpen,  onRegistration, buttonText, title, a
           autoComplete="name"
           onChange={handleName}
         />
-        
       </label>
-      <label
-        htmlFor="avatarUrl"
-        className="modal__label "
-      >
+      <label htmlFor="avatarUrl" className="modal__label ">
         Avatar URL
         <input
           type="url"
           id="avatarUrl"
           className="modal__input"
           name="avatarUrl"
-           placeholder="https://example.com"
+          placeholder="https://example.com"
           value={avatarUrl}
           onChange={handleAvatarUrl}
         />
-      
       </label>
     </ModalWithForm>
   );

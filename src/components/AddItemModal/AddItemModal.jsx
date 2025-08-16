@@ -3,7 +3,6 @@ import "./AddItemModal.css";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
 const AddItemModal = ({
- 
   buttonText,
   title,
   onCloseModal,
@@ -27,7 +26,7 @@ const AddItemModal = ({
 
   const handleSubmitModal = (e) => {
     e.preventDefault();
-    onSubmitAddItemModal( name, image, weatherType  );
+    onSubmitAddItemModal(name, image, weatherType);
     setName("");
     setImage("");
     setWeatherType("");

@@ -2,26 +2,34 @@ import "./ModalWithForm.css";
 
 function ModalWithForm({
   children,
-  buttonText,
   title,
   isOpen,
   onCloseModal,
-  onSubmitModal,
-  onItemSubmitModal,
-  onSubmitLogIn,
-onEditModalSubmit,
-  handleAddLogIn,
-  handleAddRegistration,
+  isFilled, // controlls button color
+  //button text is decided by ternary operator
+  buttonText,
+  //came from LoginModal
+  openLogInModal, // opens the modal
+  onSubmitLogIn, // submits the form
+  handleAddRegistration, // to switch from login to register modal
+
+  //came from RegisterModal
+  openRegistrationModal, // opens the modal
+  onSubmitRegistration, // submits the form
+  handleAddLogIn, //to switch from register modal to login modal
+
+  //came from ProfileEditModal & edits user profile
+  openEditProfileButton,
+  onEditModalSubmit,
+
+  //came from AddItemModal & adds clothing item
   openAddItemButton,
-  openLogInButton,
-  openRegButton,
-  openEditProfileButton
+  onItemSubmitModal,
 }) {
- 
+  const currentSubmitHandler = openRegistrationModal
+    ? onSubmitRegistration
+    : onSubmitLogIn;
 
-  const currentSubmitHandler = openRegButton ? onSubmitModal : onSubmitLogIn;
-
- 
   return (
     <div className={`modal ${isOpen ? "modal_opened" : null}`}>
       <div className="modal__content">
@@ -32,42 +40,80 @@ onEditModalSubmit,
         ></button>
         <h2 className="modal__title">{title}</h2>
         <form
-          name= ""
+          name=""
           className="modal__form modal__form_add"
-          // onSubmit={openAddItemButton ?  onSubmitModal : null}
           onSubmit={currentSubmitHandler}
-         
         >
           {children}
-          { openRegButton ? (<div><button type="submit" className="modal__submit-btn">
-            {buttonText}
-          </button><span> or <button type="button" className="modal__submit-btn_alt" onClick={handleAddLogIn}  >
-            Sign in
-            </button></span></div>) : null}
-          
+          {openRegistrationModal ? (
+            <div>
+              <button
+                type="submit"
+                className={`modal__submit-btn  ${
+                  isFilled ? "modal__submit-btn_modifier" : null
+                }`}
+              >
+                {buttonText}
+              </button>
+              <span>
+                <button
+                  type="button"
+                  className="modal__submit-btn_alt"
+                  onClick={handleAddLogIn}
+                >
+                  or Log in
+                </button>
+              </span>
+            </div>
+          ) : null}
 
-          
-          {openLogInButton ? (<div><button type="submit" className="modal__submit-btn"
-         >
-             {buttonText}
-          </button><span> or <button type="button" className="modal__submit-btn_alt" onClick={handleAddRegistration} >
-           Sign up
-            </button></span></div>) : null}
-          
+          {openLogInModal ? (
+            <div>
+              <button
+                type="submit"
+                className={`modal__submit-btn ${
+                  isFilled ? "modal__submit-btn_modifier" : null
+                }`}
+              >
+                {buttonText}
+              </button>
+              <span>
+                <button
+                  type="button"
+                  className="modal__submit-btn_alt"
+                  onClick={handleAddRegistration}
+                >
+                  or Sign up
+                </button>
+              </span>
+            </div>
+          ) : null}
 
+          {openAddItemButton ? (
+            <div>
+              <button
+                type="submit"
+                className="modal__submit-btn"
+                onClick={onItemSubmitModal}
+              >
+                {buttonText}
+              </button>
+            </div>
+          ) : null}
 
-        {openAddItemButton ? (<div><button type="submit" className="modal__submit-btn" onClick={onItemSubmitModal}
-         >
-             {buttonText}
-          </button></div>) : null}
-
-
-
-          {openEditProfileButton ? (<div><button type="submit" className="modal__submit-btn" onClick={onEditModalSubmit}
-         >
-             {buttonText}
-          </button></div>) : null}
-          
+          {openEditProfileButton ? (
+            <div>
+              <button
+                type="submit"
+                className={`modal__submit-btn ${
+                  isFilled ? "modal__submit-btn_modifier" : null
+                }`}
+                onClick={onEditModalSubmit}
+              >
+                {buttonText}
+              </button>
+            </div>
+          ) : null}
         </form>
       </div>
     </div>

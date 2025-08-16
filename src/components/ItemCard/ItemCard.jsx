@@ -15,8 +15,14 @@ function ItemCard({ item, handleCardClick, onCardLike }) {
   const handleClick = () => {
     onCardLike(item, isLiked); // we should pass that variable to the onCardLike function
   };
+
+  const itemLikeButtonClassName = ` ${
+    isLiked ? "card__like-button_liked" : "card__like-button"
+  }`;
   useEffect(() => {
-    if (item.likes.includes(currentUser._id)) {
+    if (item.likes.some((id) => id === currentUser._id)) {
+      // Create a variable which you then set in `className` for the like button
+
       setIsLiked(true);
     } else {
       setIsLiked(false);
@@ -24,10 +30,15 @@ function ItemCard({ item, handleCardClick, onCardLike }) {
   }, [item.likes]);
   return (
     <li className="card" id={item._id}>
-      <h2 className="card__name">{item.name}</h2>
-      <button type="button" className="card__like-button" onClick={handleClick}>
-        LIKE
-      </button>
+      <div className="card__header">
+        <h2 className="card__name">{item.name}</h2>
+        <button
+          type="button"
+          className={itemLikeButtonClassName}
+          onClick={handleClick}
+        ></button>
+      </div>
+
       <img
         src={item.imageUrl}
         alt={item.name}

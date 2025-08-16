@@ -1,19 +1,14 @@
 .my-profile {
   display: flex;
   justify-content: center;
-  
 }
 
 .my-profile__container {
-  
-
   width: 100%;
 }
 
 .my-profile__header {
 }
-
-
 
 .my-profile__header p {
   font-size: 32px;
@@ -30,8 +25,5 @@
 }
 
 .my-profile__value {
-  color: black
+  color: black;
 }
-
-
-
