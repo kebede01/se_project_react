@@ -1,6 +1,6 @@
 import "./ProfileEditModal.css";
-import { useState } from "react";
-
+import { useState, useEffect, useContext } from "react";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
 function ProfileEditModal({
@@ -11,26 +11,30 @@ function ProfileEditModal({
   buttonText,
   title,
 }) {
-  const [name, setName] = useState("");
-  const [avatar, setAvatar] = useState("");
+  const [nameProfile, setNameProfile] = useState("");
+  const [avatarUrl, setAvatarUrl] = useState("");
   //The following 'boolean' is to control button color
-  const isFilled = name && avatar !== "";
+  const isFilled = nameProfile && avatarUrl !== "";
 
-  const handleName = (e) => {
-    setName(e.target.value);
+  const { currentUser } = useContext(CurrentUserContext);
+
+  const handleNameProfile = (e) => {
+    setNameProfile(e.target.value);
   };
 
   const handleAvatar = (e) => {
-    setAvatar(e.target.value);
+    setAvatarUrl(e.target.value);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmitEditModal(name, avatar);
-    onCloseModal();
-    setName("");
-    setAvatar("");
+    onSubmitEditModal(nameProfile, avatarUrl);
   };
+
+  useEffect(() => {
+    setNameProfile(currentUser.name);
+    setAvatarUrl(currentUser.avatar);
+  }, [isOpen]);
 
   return (
     <>
@@ -43,27 +47,27 @@ function ProfileEditModal({
         title={title}
         isFilled={isFilled}
       >
-        <label htmlFor="name" className="modal__label">
+        <label htmlFor="nameProfile" className="modal__label">
           Name
           <input
-            id="name"
+            id="nameProfile"
             type="text"
             className="modal__input"
             placeholder="Name"
-            name="email"
-            value={name}
+            name="nameProfile"
+            value={nameProfile}
             required
-            onChange={handleName}
+            onChange={handleNameProfile}
           />
         </label>
-        <label htmlFor="avatar" className="modal__label ">
+        <label htmlFor="avatarUrl" className="modal__label ">
           Avatar
           <input
             type="url"
-            id="avatar"
+            id="avatarUrl"
             className="modal__input"
-            name="avatar"
-            value={avatar}
+            name="avatarUrl"
+            value={avatarUrl}
             placeholder="Avatar"
             onChange={handleAvatar}
           />

@@ -40,7 +40,7 @@ function ModalWithForm({
         ></button>
         <h2 className="modal__title">{title}</h2>
         <form
-          name=""
+          name="modalWithForm"
           className="modal__form modal__form_add"
           onSubmit={currentSubmitHandler}
         >

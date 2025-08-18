@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./AddItemModal.css";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
@@ -27,10 +27,13 @@ const AddItemModal = ({
   const handleSubmitModal = (e) => {
     e.preventDefault();
     onSubmitAddItemModal(name, image, weatherType);
+  };
+  // To avoid resetting the form immediately after submission. If an error occurs, the modal will remain open, and the user should be able to try again without having to retype all the input data.
+  useEffect(() => {
     setName("");
     setImage("");
     setWeatherType("");
-  };
+  }, [isOpen]);
 
   return (
     <ModalWithForm

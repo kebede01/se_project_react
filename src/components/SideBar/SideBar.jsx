@@ -8,7 +8,7 @@ const SideBar = ({ handleAddEditProfileModal, logOut }) => {
     <section className="side-bar">
       <div className="side-bar__header">
         <img
-          src={currentUser.avatarUrl}
+          src={currentUser.avatar}
           alt={`image of ${currentUser.name}`}
           className="side-bar__avatar"
         />

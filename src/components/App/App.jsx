@@ -41,10 +41,7 @@ function App() {
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  const [currentUser, setCurrentUser] = useState({
-    name: "kebede ",
-    email: "example@gmail.com",
-  });
+  const [currentUser, setCurrentUser] = useState({});
   // The following four help toggle button type in 'ModalWithForm' component
   const openLogInModal = activeModal === "login";
   const openRegistrationModal = activeModal === "register";
@@ -57,6 +54,7 @@ function App() {
 
   const handleAddEditProfileModal = () => {
     setActiveModal("edit profile");
+    
   };
 
   const handleAddRegistration = () => {
@@ -87,7 +85,8 @@ function App() {
     postItems(name, image, weatherType, token)
       .then((res) => {
         setClothingItems((prevValue) => {
-          return [...prevValue, res.data];
+          //new items appear at the beginning of the previous items.
+          return [res.data, ...prevValue];
         });
 
         handleCloseModal();
@@ -127,7 +126,8 @@ function App() {
     auth
       .register(name, avatarUrl, email, password)
       .then(() => {
-        console.log("Yes registered");
+       handleLogIn(email, password);
+       handleCloseModal();
       })
       .catch(console.error);
   };
@@ -166,6 +166,7 @@ function App() {
         // now we immediately update current user info;
         auth.getUserInfo(token).then((data) => {
           setCurrentUser(data.data);
+          handleCloseModal();
         });
       })
       .catch(console.error);
@@ -203,6 +204,7 @@ function App() {
   // function to logout
   const logOut = () => {
     tokenValue.removeToken(); //removes token from the browser localStorage
+    setCurrentUser({});
     setIsLoggedIn(false);
     navigate("/");
   };

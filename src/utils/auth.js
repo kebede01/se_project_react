@@ -1,11 +1,9 @@
+import { checkResponse } from "./api.js";
 // src/utils/auth.js
 
 // Specify the BASE_URL for the API.
 export const BASE_URL = "http://localhost:3001";
 
-export function checkResponse(res) {
-  return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
-}
 // The register function accepts the necessary data as arguments,
 // and sends a POST request to the given endpoint.
 export const register = (name, avatarUrl, email, password) => {

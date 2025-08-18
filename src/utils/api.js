@@ -1,6 +1,6 @@
 const baseUrl = "http://localhost:3001";
 
-export function checkResponse(res) {
+function checkResponse(res) {
   return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
 }
 
@@ -55,4 +55,4 @@ const deleteCard = (selectedCard, token) => {
   }).then(checkResponse);
 };
 
-export { getItems, postItems, deleteCard, getClothItem };
+export { getItems, postItems, deleteCard, getClothItem, checkResponse };

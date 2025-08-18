@@ -1,5 +1,5 @@
 // import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import "./RegisterModal.css";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
@@ -13,39 +13,46 @@ const Register = ({
   handleAddLogIn,
   openRegistrationModal,
 }) => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [avatarUrl, setAvatarUrl] = useState("");
+  const [nameRegister, setNameRegister] = useState("");
+  const [emailRegister, setEmailRegister] = useState("");
+  const [passwordRegister, setPasswordRegister] = useState("");
+  const [avatarRegister, setAvatarRegister] = useState("");
   //The following 'boolean' is to control button color
-  const isFilled = email && name && password && avatarUrl !== "";
+  const isFilled =
+    emailRegister && nameRegister && passwordRegister && avatarRegister !== "";
 
-  const handleName = (e) => {
-    setName(e.target.value);
+  const handleNameRegister = (e) => {
+    setNameRegister(e.target.value);
   };
 
-  const handleEmail = (e) => {
-    setEmail(e.target.value);
+  const handleEmailRegister = (e) => {
+    setEmailRegister(e.target.value);
   };
 
-  const handlePassword = (e) => {
-    setPassword(e.target.value);
+  const handlePasswordRegister = (e) => {
+    setPasswordRegister(e.target.value);
   };
 
   const handleAvatarUrl = (e) => {
-    setAvatarUrl(e.target.value);
+    setAvatarRegister(e.target.value);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onRegistration(name, avatarUrl, email, password);
-    onCloseModal();
-    setAvatarUrl("");
-    setEmail("");
-    setName("");
-    setPassword("");
-    handleAddLogIn();
+    onRegistration(
+      nameRegister,
+      avatarRegister,
+      emailRegister,
+      passwordRegister
+    );
   };
+  // To reset the form on modal change
+  useEffect(() => {
+    setAvatarRegister("");
+    setEmailRegister("");
+    setNameRegister("");
+    setPasswordRegister("");
+  }, [isOpen]);
 
   return (
     <ModalWithForm
@@ -59,58 +66,58 @@ const Register = ({
       openRegistrationModal={openRegistrationModal}
       isFilled={isFilled}
     >
-      <label htmlFor="email" className="modal__label">
+      <label htmlFor="emailRegister" className="modal__label">
         Email
         <input
-          id="email"
+          id="emailRegister"
           type="email"
           className="modal__input"
           placeholder="Email"
           required
-          name="email"
-          value={email}
-          onChange={handleEmail}
+          name="emailRegister"
+          value={emailRegister}
+          onChange={handleEmailRegister}
         />
       </label>
 
-      <label htmlFor="password" className="modal__label">
+      <label htmlFor="passwordRegister" className="modal__label">
         Password
         <input
-          id="password"
+          id="passwordRegister"
           type="password"
           className="modal__input"
           placeholder=" Password"
-          name="password"
-          value={password}
+          name="passwordRegister"
+          value={passwordRegister}
           required
           autoComplete="current-password"
-          onChange={handlePassword}
+          onChange={handlePasswordRegister}
         />
       </label>
-      <label htmlFor="name" className="modal__label ">
+      <label htmlFor="nameRegister" className="modal__label ">
         Name
         <input
           type="text"
-          id="name"
+          id="nameRegister"
           minLength="2"
           maxLength="30"
           className="modal__input"
-          name="name"
-          value={name}
+          name="nameRegister"
+          value={nameRegister}
           placeholder="Name"
-          autoComplete="name"
-          onChange={handleName}
+          autoComplete="nameRegister"
+          onChange={handleNameRegister}
         />
       </label>
-      <label htmlFor="avatarUrl" className="modal__label ">
+      <label htmlFor="avatarRegister" className="modal__label ">
         Avatar URL
         <input
           type="url"
-          id="avatarUrl"
+          id="avatarRegister"
           className="modal__input"
-          name="avatarUrl"
+          name="avatarRegister"
           placeholder="https://example.com"
-          value={avatarUrl}
+          value={avatarRegister}
           onChange={handleAvatarUrl}
         />
       </label>

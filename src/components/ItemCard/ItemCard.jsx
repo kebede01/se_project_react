@@ -25,16 +25,18 @@ function ItemCard({ item, handleCardClick, onCardLike }) {
       setIsLiked(false);
     }
   }, [item.likes]);
+
   return (
     <li className="card" id={item._id}>
       <div className="card__header">
         <h2 className="card__name">{item.name}</h2>
-        <button
-          disabled={isLoggedIn ? false : true}
-          type="button"
-          className={itemLikeButtonClassName}
-          onClick={handleClick}
-        ></button>
+        {isLoggedIn ? (
+          <button
+            type="button"
+            className={itemLikeButtonClassName}
+            onClick={handleClick}
+          ></button>
+        ) : null}
       </div>
 
       <img
