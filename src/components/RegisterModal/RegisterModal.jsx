@@ -13,10 +13,11 @@ const Register = ({
   handleAddLogIn,
   openRegistrationModal,
 }) => {
-  const [nameRegister, setNameRegister] = useState("");
   const [emailRegister, setEmailRegister] = useState("");
   const [passwordRegister, setPasswordRegister] = useState("");
+  const [nameRegister, setNameRegister] = useState("");
   const [avatarRegister, setAvatarRegister] = useState("");
+
   //The following 'boolean' is to control button color
   const isFilled =
     emailRegister && nameRegister && passwordRegister && avatarRegister !== "";
@@ -48,9 +49,9 @@ const Register = ({
   };
   // To reset the form on modal change
   useEffect(() => {
+    setNameRegister("");
     setAvatarRegister("");
     setEmailRegister("");
-    setNameRegister("");
     setPasswordRegister("");
   }, [isOpen]);
 

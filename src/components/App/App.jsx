@@ -54,7 +54,6 @@ function App() {
 
   const handleAddEditProfileModal = () => {
     setActiveModal("edit profile");
-    
   };
 
   const handleAddRegistration = () => {
@@ -126,8 +125,8 @@ function App() {
     auth
       .register(name, avatarUrl, email, password)
       .then(() => {
-       handleLogIn(email, password);
-       handleCloseModal();
+        handleLogIn(email, password);
+        handleCloseModal();
       })
       .catch(console.error);
   };
