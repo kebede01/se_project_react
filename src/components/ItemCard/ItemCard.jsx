@@ -24,7 +24,7 @@ function ItemCard({ item, handleCardClick, onCardLike }) {
     } else {
       setIsLiked(false);
     }
-  }, [item.likes]);
+  }, [item.likes, currentUser]);
 
   return (
     <li className="card" id={item._id}>

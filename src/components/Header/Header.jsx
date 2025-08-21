@@ -36,7 +36,7 @@ function Header({ handleAddGarment, weatherData, onRegistration, onAddLogIn }) {
         <Link to="/profile" className="header__user-container__link">
           <p className="header__avatar-name">{currentUser.name}</p>
           <img
-            src={currentUser?.avatarUrl}
+            src={currentUser?.avatar}
             alt={`image of ${currentUser.name}`}
             className="header__avatar-img"
           />

@@ -32,8 +32,10 @@ function ProfileEditModal({
   };
 
   useEffect(() => {
-    setNameProfile(currentUser.name);
-    setAvatarUrl(currentUser.avatar);
+    if (currentUser && currentUser.name && currentUser.avatar) {
+      setNameProfile(currentUser.name);
+      setAvatarUrl(currentUser.avatar);
+    }
   }, [isOpen]);
 
   return (
