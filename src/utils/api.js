@@ -1,16 +1,17 @@
-const baseUrl = "http://localhost:3001";
+import { BASE_URL } from "./constants";
+// const baseUrl = "http://localhost:3001";
 
 function checkResponse(res) {
   return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
 }
 
 const getItems = () => {
-  return fetch(`${baseUrl}/items`).then(checkResponse);
+  return fetch(`${BASE_URL}/items`).then(checkResponse);
 };
 
 const postItems = (name, image, weatherType, token) => {
   //use localStorage.getToken() in app.jsx  to get token just before calling this function
-  return fetch(`${baseUrl}/items`, {
+  return fetch(`${BASE_URL}/items`, {
     method: "POST",
     headers: {
       Accept: "application/json",
@@ -30,7 +31,7 @@ const postItems = (name, image, weatherType, token) => {
 
 const getClothItem = (itemId, token) => {
   //use localStorage.getToken() in app.jsx  to get token just before calling this function
-  return fetch(`${baseUrl}/items/${itemId}`, {
+  return fetch(`${BASE_URL}/items/${itemId}`, {
     method: "GET",
     headers: {
       Accept: "application/json",
@@ -43,7 +44,7 @@ const getClothItem = (itemId, token) => {
 };
 
 const deleteCard = (selectedCard, token) => {
-  return fetch(`${baseUrl}/items/${selectedCard._id}`, {
+  return fetch(`${BASE_URL}/items/${selectedCard._id}`, {
     method: "DELETE",
     headers: {
       Accept: "application/json",

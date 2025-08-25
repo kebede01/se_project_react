@@ -70,6 +70,10 @@ export const defaultWeatherOptions = {
       .href,
   },
 };
+export const BASE_URL =
+  process.env.NODE_ENV === "production"
+    ? "https://api.wtwrkeb.jumpingcrab.com"
+    : "http://localhost:3001";
 export const APIkey = "9cf65f89056b77b01378a8a5998e91cb";
 export const coordinates = {
   lat: 47.60621,

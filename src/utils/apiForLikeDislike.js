@@ -1,6 +1,7 @@
 import { checkResponse } from "./api.js";
 // Specify the BASE_URL for the API.
-export const BASE_URL = "http://localhost:3001";
+import {BASE_URL} from "./constants.js"
+// export const BASE_URL = "http://localhost:3001";
 
 export const addCardLike = (itemId, token) => {
   return fetch(`${BASE_URL}/items/${itemId}/likes`, {
