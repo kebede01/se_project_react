@@ -48,4 +48,9 @@ The app has added more new features using 'React' features.
 
 ## Backend
 
-https://github.com/kebede01/se_project_express
+
+### The project's domain name
+`wtwrkeb.jumpingcrab.com`
+
+### A link to the frontend github repo
+`https://github.com/kebede01/se_project_react`

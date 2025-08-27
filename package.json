@@ -12,6 +12,7 @@
     "deploy": "npm run build && scp -r ./dist/* teklekebede01@wtwrkeb.jumpingcrab.com:/home/teklekebede01/frontend"
   },
   "dependencies": {
+    "dotenv": "17.2.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "6.30.1"

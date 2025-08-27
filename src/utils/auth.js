@@ -2,7 +2,7 @@ import { checkResponse } from "./api.js";
 // src/utils/auth.js
 
 // Specify the BASE_URL for the API.
-import { BASE_URL } from "./constants.js";
+import { BASE_URL }  from "./constants.js";
 // export const BASE_URL = "http://localhost:3001";
 
 // The register function accepts the necessary data as arguments,

@@ -79,3 +79,5 @@ export const coordinates = {
   lat: 47.60621,
   lon: -122.33207,
 };
+
+
