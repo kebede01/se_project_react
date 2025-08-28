@@ -1,4 +1,7 @@
 module.exports = {
+  globals: {
+    process: "readonly",
+  },
   root: true,
   env: { browser: true, es2020: true },
   extends: [
@@ -21,10 +24,8 @@ module.exports = {
     "react/prop-types": 0,
   },
 
- 
   overrides: [
     {
-      
       files: ["*.js", "*.jsx"],
     },
   ],
