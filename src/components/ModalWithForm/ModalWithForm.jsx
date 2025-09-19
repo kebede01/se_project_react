@@ -93,7 +93,9 @@ function ModalWithForm({
             <div>
               <button
                 type="submit"
-                className="modal__submit-btn"
+                className={`modal__submit-btn ${
+                  isFilled ? "modal__submit-btn_modifier" : null
+                }`}
                 onClick={onItemSubmitModal}
               >
                 {buttonText}

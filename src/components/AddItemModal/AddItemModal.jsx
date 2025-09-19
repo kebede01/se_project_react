@@ -28,13 +28,14 @@ const AddItemModal = ({
     e.preventDefault();
     onSubmitAddItemModal(name, image, weatherType);
   };
-  // To avoid resetting the form immediately after submission. If an error occurs, the modal will remain open, and the user should be able to try again without having to retype all the input data.
+
   useEffect(() => {
     setName("");
     setImage("");
     setWeatherType("");
   }, [isOpen]);
 
+  const isFilled = name && image && weatherType;
   return (
     <ModalWithForm
       buttonText={buttonText}
@@ -43,6 +44,7 @@ const AddItemModal = ({
       onCloseModal={onCloseModal}
       isOpen={isOpen}
       onItemSubmitModal={handleSubmitModal}
+      isFilled={isFilled}
     >
       <label htmlFor="name" className="modal__label">
         Name
