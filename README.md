@@ -2,7 +2,7 @@
 
 ## About
 
-This project is building an app that suggests the type of clothing suitable for the current weather and specified location.
+This project is about building an app that suggests the type of clothing suitable for the current weather and specified location.
 
 ## Technologies Used
 
@@ -14,7 +14,6 @@ This project is building an app that suggests the type of clothing suitable for 
 
 - **Real-time weather data** using API requests
 - **Clothing suggestions** based on weather conditions
-- Clothing types are stored in `constants.js` file
 
 ## Future Development
 
@@ -43,14 +42,17 @@ The app has added more new features using 'React' features.
 
 - A temperature unit toggle switch using React context
 - A profile page route using React Router
-- Form submission using controlled components or refs
-  \_ Registration , log in, profile editing features added.
-
-## Backend
+- Form submission using controlled components 
+- Registration , log in, profile editing features added.
 
 
-### The project's domain name
+### The project's domain names
+
 `wtwrkeb.jumpingcrab.com`
+`https://www.wtwrkeb.jumpingcrab.com/`
+`http://www.wtwrkeb.jumpingcrab.com/`
 
 ### A link to the frontend github repo
+
 `https://github.com/kebede01/se_project_react`
+`https://github.com/kebede01/se_project_express`
